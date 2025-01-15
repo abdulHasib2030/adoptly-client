@@ -7,6 +7,8 @@ import HomeLayout from '../Layout/HomeLayout';
 import Home from '../pages/Home/Home';
 import Login from '../pages/LoginRegister/Login';
 import Register from '../pages/LoginRegister/Register';
+import PetListing from '../pages/PetListing/PetListing';
+import PetDetails from '../pages/PetDetails/PetDetails';
 
 export const router = createBrowserRouter([
     {
@@ -25,6 +27,14 @@ export const router = createBrowserRouter([
         path: '/register',
         element: <Register></Register>
        },
+       {
+        path: '/pet-list',
+        element: <PetListing></PetListing>
+       },
+       {
+        path: '/pet-details/:id',
+        element: <PetDetails></PetDetails>
+       }
       ]
     },
   ]);
