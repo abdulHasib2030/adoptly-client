@@ -18,7 +18,7 @@ const Register = () => {
         setUser,
         createUser,
         updateUserProfile,
-        googleAuth, } = useAuth()
+        googleAuth,gitHubAuth } = useAuth()
     const navigate = useNavigate()
     const location = useLocation()
 
@@ -117,6 +117,16 @@ const Register = () => {
 
         })
     }
+
+    const handleGitHub = () =>{
+        gitHubAuth()
+            .then(res =>{
+                setUser(res.user)
+            toast.success("Successfully login")
+            navigate(location?.state? location?.state : '/')
+        })
+    }
+
     return (
         <div className='md:flex items-center justify-center'>
 
@@ -137,7 +147,7 @@ const Register = () => {
                                 <button type="button" onClick={handleGoogle} className="text-gray-900 w-full text-center bg-white hover:bg-gray-100 border border-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100 font-medium rounded-lg text-sm px-4 py-2.5 justify-center inline-flex items-center dark:focus:ring-gray-600 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:hover:bg-gray-700 me-2 mb-2">
                                     <FcGoogle className='mr-1 text-xl' />  Log in with Google
                                 </button>
-                                <button type="button" className="text-gray-900 w-full text-center bg-white hover:bg-gray-100 border border-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100 font-medium rounded-lg text-sm px-4 py-2.5 justify-center inline-flex items-center dark:focus:ring-gray-600 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:hover:bg-gray-700 me-2 mb-2">
+                                <button type="button" onClick={handleGitHub} className="text-gray-900 w-full text-center bg-white hover:bg-gray-100 border border-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100 font-medium rounded-lg text-sm px-4 py-2.5 justify-center inline-flex items-center dark:focus:ring-gray-600 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:hover:bg-gray-700 me-2 mb-2">
                                     <FaGithub className='mr-1 text-xl' />   Log in with GitHub
                                 </button>
                             </div>
