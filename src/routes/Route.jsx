@@ -11,6 +11,7 @@ import PetListing from '../pages/PetListing/PetListing';
 import PetDetails from '../pages/PetDetails/PetDetails';
 import DonationCampain from '../pages/DonationCampain/DonationCampain';
 import DonationDetails from '../pages/DonationDetails/DonationDetails';
+import LogRedirect from './LogRedirect';
 
 export const router = createBrowserRouter([
     {
@@ -23,7 +24,7 @@ export const router = createBrowserRouter([
        },
        {
         path: '/login',
-        element: <Login></Login>
+        element: <LogRedirect><Login></Login></LogRedirect>
        },
        {
         path: '/register',

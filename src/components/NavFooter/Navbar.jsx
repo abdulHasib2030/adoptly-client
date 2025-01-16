@@ -3,10 +3,22 @@ import logo from '../../assets/logo.png'
 import { CgMenuRightAlt } from "react-icons/cg";
 import { IoMdMoon } from "react-icons/io";
 import { IoSunny } from "react-icons/io5";
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
+import useAuth from '../../hooks/useAuth';
+import toast from 'react-hot-toast';
+
 const Navbar = () => {
     const [dropdownBtn, setDropdownBtn] = useState(true)
     const [themeicon, setThemeIcon] = useState(localStorage.getItem('theme') === 'dark' ? true : false)
+    const { user, logoutUser } = useAuth()
+    const [dropdownAvater, setDropdownAvater] = useState(true)
+    const navigate = useNavigate()
+
+    const handleLogout = () =>{
+        console.log("logout");
+        logoutUser()
+        
+    }
 
     const toggleDarkMode = () => {
         const htmlElement = document.documentElement;
@@ -30,10 +42,10 @@ const Navbar = () => {
         document.documentElement.classList.remove('dark');
 
     }
+    console.log(user);
 
     return (
         <div>
-
 
             <nav className="bg-white dark:bg-gray-900 fixed w-full z-20 top-0 start-0 border-b border-gray-200 dark:border-gray-600">
                 <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
@@ -47,15 +59,46 @@ const Navbar = () => {
                                 <IoMdMoon onClick={toggleDarkMode} className='mr-3 text-2xl cursor-pointer ' />
                         }
 
-                        <div className='md:block hidden'>
-                            <NavLink to={'/login'}> <button type="button" className="text-gray-900 bg-white hover:bg-gray-100 border border-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-gray-600 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:hover:bg-gray-700 me-2 mb-2">
-                                Login
-                            </button></NavLink>
-                            <NavLink to={'/register'}>
-                                <button type="button" className="text-gray-900 bg-white hover:bg-gray-100 border border-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-gray-600 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:hover:bg-gray-700 me-2 mb-2">
-                                    Register
+                        {user ?
+                            <div class="flex relative items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
+                                <button type="button" onClick={()=> dropdownAvater ? setDropdownAvater(false) : setDropdownAvater(true)} class="flex text-sm bg-gray-800 rounded-full md:me-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600" id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown" data-dropdown-placement="bottom">
+                                    <span class="sr-only">Open user menu</span>
+                                    <img class="w-8 h-8 rounded-full" src={user?.photoURL} alt="user photo" />
+                                </button>
+
+                                <div class={`z-50 ${dropdownAvater && 'hidden'} right-3 top-5 absolute my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600`} id="user-dropdown">
+                                    <div class="px-4 py-3">
+                                        <span class="block text-sm text-gray-900 dark:text-white">Bonnie Green</span>
+                                        <span class="block text-sm  text-gray-500 truncate dark:text-gray-400">name@flowbite.com</span>
+                                    </div>
+                                    <ul class="py-2" aria-labelledby="user-menu-button">
+                                        <li>
+                                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Dashboard</a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Settings</a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Earnings</a>
+                                        </li>
+                                        <li >
+                                            <button onClick={handleLogout}  class="block w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sign out</button>
+                                        </li>
+                                    </ul>
+                                </div>
+                                
+                            </div>
+                            :
+
+                            <div className='md:block hidden'>
+                                <NavLink to={'/login'}> <button type="button" className="text-gray-900 bg-white hover:bg-gray-100 border border-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-gray-600 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:hover:bg-gray-700 me-2 mb-2">
+                                    Login
                                 </button></NavLink>
-                        </div>
+                                <NavLink to={'/register'}>
+                                    <button type="button" className="text-gray-900 bg-white hover:bg-gray-100 border border-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-gray-600 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:hover:bg-gray-700 me-2 mb-2">
+                                        Register
+                                    </button></NavLink>
+                            </div>}
                         {/* <button type="button" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Get started</button> */}
                         <div className='dropdown md:hidden'>
                             <CgMenuRightAlt onClick={() => setDropdownBtn(false)}
@@ -84,15 +127,17 @@ const Navbar = () => {
                                         <li>
                                             <Link to={'/donation-campain'} className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Donation Campaigns</Link>
                                         </li>
-                                        <li>
-                                            <NavLink to={'/login'}> <button type="button" className="text-gray-900 bg-white hover:bg-gray-100 border border-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-gray-600 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:hover:bg-gray-700 me-2 mb-2">
-                                                Login
-                                            </button></NavLink>
-                                            <NavLink to={'/register'}>
-                                                <button type="button" className="text-gray-900 bg-white hover:bg-gray-100 border border-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-gray-600 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:hover:bg-gray-700 me-2 mb-2">
-                                                    Register
+                                        { !user &&
+
+                                            <li>
+                                                <NavLink to={'/login'}> <button type="button" className="text-gray-900 bg-white hover:bg-gray-100 border border-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-gray-600 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:hover:bg-gray-700 me-2 mb-2">
+                                                    Login
                                                 </button></NavLink>
-                                        </li>
+                                                <NavLink to={'/register'}>
+                                                    <button type="button" className="text-gray-900 bg-white hover:bg-gray-100 border border-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-gray-600 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:hover:bg-gray-700 me-2 mb-2">
+                                                        Register
+                                                    </button></NavLink>
+                                            </li>}
                                     </ul>
                                 </div>
                             </div>
