@@ -69,10 +69,16 @@ function MyAddedPet() {
 
   const columns = useMemo(
     () => [
-      // {
-      //   accessorKey: 'serialNumber',
-      //   header: 'Serial Number',
-      // },
+      {
+        accessorKey: 'serialNumber',
+        header: 'Serial Number',
+        cell: (info) => {
+          const rowIndex = info.table.getRowModel().rows.findIndex(
+            (row) => row.id === info.row.id
+          );
+          return <span>{rowIndex + 1}</span>; // Display 1-based index
+        },
+      },
       {
         accessorKey: 'name',
         header: 'Pet Name',
@@ -107,19 +113,19 @@ function MyAddedPet() {
           <div className="flex space-x-2">
             <button
               onClick={() => handleUpdate(row.original)}
-              className="text-blue-600 hover:underline"
+              className="text-gray-900 bg-[#F7BE38] hover:bg-[#F7BE38]/90 focus:ring-4 focus:outline-none focus:ring-[#F7BE38]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-[#F7BE38]/50 me-2 mb-2"
             >
               Update
             </button>
             <button
               onClick={() => handleDelete(row.original)}
-              className="text-red-600 hover:underline"
+              className="text-gray-900 bg-red-500 hover:bg-red-500/90 focus:ring-4 focus:outline-none  font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center  me-2 mb-2"
             >
               Delete
             </button>
             <button
               onClick={() => handleAdopt(row.original)}
-              className="text-green-600 hover:underline"
+              className="text-gray-900 bg-green-500 hover:bg-green-500/90 focus:ring-4 focus:outline-none  font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center  me-2 mb-2"
             >
               Mark as Adopted
             </button>
@@ -131,7 +137,6 @@ function MyAddedPet() {
   );
 
 
-  // const data = useMemo(() => fetchData(), []);
 
 
 
@@ -178,9 +183,9 @@ function MyAddedPet() {
                 ))}
               </thead>
               <tbody className="bg-white divide-y divide-gray-200 dark:bg-gray-800 dark:divide-gray-700">
-                {table.getRowModel().rows.map(row => (
+                {table.getRowModel().rows.map((row )=> (
                   <tr key={row.id} className="hover:bg-gray-50 dark:hover:bg-gray-600">
-                    {row.getVisibleCells().map(cell => (
+                    {row.getVisibleCells().map((cell) => (
                       <td key={cell.id} className="px-6 py-4">
                         {flexRender(cell.column.columnDef.cell, cell.getContext())}
                       </td>
@@ -193,6 +198,8 @@ function MyAddedPet() {
               </tbody>
             </table>
             {/* Pagination Controls */}
+            {
+              pets.length > 10 &&
             <div className="flex justify-between items-center py-3">
               <button
                 onClick={() => table.previousPage()}
@@ -201,9 +208,9 @@ function MyAddedPet() {
               >
                 Previous
               </button>
-              <span>
+              <span className='dark:text-white'>
                 Page{' '}
-                <strong>
+                <strong className='dark:text-white'>
                   {table.getState().pagination.pageIndex + 1} of{' '}
                   {table.getPageCount()}
                 </strong>
@@ -216,6 +223,7 @@ function MyAddedPet() {
                 Next
               </button>
             </div>
+            }
           </div>
 
       }

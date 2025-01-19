@@ -18,7 +18,7 @@ const DonationCampain = () => {
         <div className='my-32'>
             {
                 isLoading ? <Loading></Loading>:
-             <div id="item-show" className='grid md:grid-cols-2 grid-cols-1 lg:grid-cols-3 gap-8'>
+             <div id="item-show" className='grid md:grid-cols-2 dark:text-white grid-cols-1 lg:grid-cols-3 gap-8'>
                 {
                     donations.map(donation =>
                      <div className='border-2 p-5 rounded-xl'>
@@ -27,11 +27,11 @@ const DonationCampain = () => {
                             <img src={donation.image} class="rounded-lg" alt="not available" />
                             <h3 class="text-xl font-bold mt-4 mb-2">{donation.name}</h3>
                             
-                            <div class="flex gap-4 text-[#131313B3] items-center">
+                            <div class="flex gap-4  items-center">
                                 
                                 <p>Maximum Donation Amount: {donation.donation} </p>
                             </div>
-                            <div class="flex gap-4 text-[#131313B3] items-center">
+                            <div class="flex gap-4  items-center">
                                 
                                 <p>Donated amount: {0} </p>
                             </div>
