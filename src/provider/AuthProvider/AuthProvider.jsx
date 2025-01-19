@@ -10,7 +10,9 @@ import toast from 'react-hot-toast';
 export const AuthContext = createContext(null)
 const provider = new GoogleAuthProvider()
 const githubProvider = new GithubAuthProvider()
+
 const AuthProvider = ({children}) => {
+    const [isAdmin, setIsAdmin] = useState(false)
     const [loading, setLoading] =useState(true);
     const [user, setUser] = useState(null);
 
@@ -46,26 +48,30 @@ const AuthProvider = ({children}) => {
         
         if(currentUser?.email){
             const user = {email: currentUser.email}
-            axiosPublic.post(`/jwt`, user, {
-                withCredentials:true
-            })
+            axiosPublic.post(`/jwt`, user)
             .then(res => {
+                if(res.data.token){
+                    localStorage.setItem('access-token', res.data.token)
+                }
+                axiosPublic.get(`/user?email=${currentUser.email}`)
+                .then(response =>{
+                    if(response.data.role === 'admin'){
+                        setIsAdmin(true)
+                    }else{
+                        setIsAdmin(false)
+                    }
+                })
                 setLoading(false)
             })
         }
         else{
-            axiosPublic.post(`/logout`, {},{
-                withCredentials:true
-            })
-            .then(res => {
-                setLoading(false)
-            })
+            localStorage.removeItem('access-token')
         }
     })
     return ()=>{
         subscribe()
     }
-   }, [])
+   }, [axiosPublic])
 
    const logoutUser = () =>{
     setLoading(false)
@@ -84,7 +90,8 @@ const AuthProvider = ({children}) => {
         updateUserProfile,
         logoutUser,
         googleAuth,
-        gitHubAuth
+        gitHubAuth,
+        isAdmin
     
     }
 

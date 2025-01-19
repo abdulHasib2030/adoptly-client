@@ -8,7 +8,8 @@ const LogRedirect = ({children}) => {
     const location = useLocation()
     if(loading) return <Loading></Loading>
     if (user){
-        location?.state ? <Navigate to={location.state} /> : <Navigate to='/' />
+      
+   return location.state ? <Navigate to='/'></Navigate> : <Navigate to={'/'}></Navigate>
     }
 
     return children;

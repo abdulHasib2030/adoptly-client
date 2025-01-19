@@ -69,19 +69,22 @@ const Register = () => {
         )
         console.log(data.success, error);
         if (data.success) {
-            const userData = {
-                name: name,
-                email: email,
-                role: 'user'
-            }
+           
             console.log(email, password);
 
             createUser(email, password)
                 .then(result => {
                     const user = result.user;
+                   axiosPublic.post('/add-user', {name: name, email: user.email, photoURL: data.data.display_url, role: 'user'})
+                   .then(res => {
+                    console.log(res.data);
+                   })
+                   
+
                     setUser(user)
                     updateUserProfile({ displayName: name, photoURL: data.data.display_url })
                         .then(() => {
+
                             toast.success('Successfully Registered.')
                             setLoading(false)
                             navigate(location.state ? location.state : '/')
@@ -111,6 +114,11 @@ const Register = () => {
         googleAuth()
         .then(res => {setUser(res.user)
             toast.success("Successfully register.")
+
+            axiosPublic.post(`/add-user`, {name: res.user.displayName, email: res.user.email, photoURL: res.user.photoURL, role: 'user'})
+            .then(response =>{
+                
+            })
             navigate(location?.state ? location.state : '/')
         })
         .catch(err => {
@@ -123,6 +131,10 @@ const Register = () => {
             .then(res =>{
                 setUser(res.user)
             toast.success("Successfully login")
+            axiosPublic.post(`/add-user`, {name: res.user.displayName, email: res.user.email, photoURL: res.user.photoURL, role: 'user'})
+            .then(response =>{
+                
+            })
             navigate(location?.state? location?.state : '/')
         })
     }

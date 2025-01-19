@@ -11,9 +11,13 @@
   },
   "dependencies": {
     "@egjs/react-flicking": "^4.12.0",
+    "@tanstack/react-query": "^5.64.1",
+    "@tanstack/react-router": "^1.97.1",
+    "@tanstack/react-table": "^8.20.6",
     "axios": "^1.7.9",
     "firebase": "^11.1.0",
     "flowbite-react": "^0.10.2",
+    "formik": "^2.4.6",
     "jsonwebtoken": "^9.0.2",
     "localforage": "^1.10.0",
     "lottie-react": "^2.4.0",
@@ -23,8 +27,13 @@
     "react-dom": "^18.3.1",
     "react-hot-toast": "^2.5.1",
     "react-icons": "^5.4.0",
+    "react-intersection-observer": "^9.15.0",
+    "react-loading-skeleton": "^3.5.0",
+    "react-quill": "^2.0.0",
     "react-router-dom": "^7.1.1",
+    "react-select": "^5.9.0",
     "sort-by": "^1.2.0",
+    "sweetalert2": "^11.15.10",
     "swiper": "^11.2.1"
   },
   "devDependencies": {

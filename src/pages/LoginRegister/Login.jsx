@@ -6,49 +6,60 @@ import { FcGoogle } from "react-icons/fc";
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
 import toast from 'react-hot-toast';
+import useAxiosPublic from '../../hooks/useAxiosPublic';
 
 const Login = () => {
-    const {user, setUser,loginUser, googleAuth, gitHubAuth } = useAuth()
+    const { user, setUser, loginUser, googleAuth, gitHubAuth } = useAuth()
     const navigate = useNavigate()
     const location = useLocation()
     const [loading, setLoading] = useState(null)
+    const axiosPublic = useAxiosPublic()
 
-    const handleLoginForm = (e) =>{
+    const handleLoginForm = (e) => {
         e.preventDefault()
         setLoading(true)
         const form = e.target;
         const email = form.email.value;
         const password = form.password.value;
         loginUser(email, password)
-        .then(res => {
-            setUser(res.user)
-            toast.success("Login successfully.")
-            setLoading(false)
-            navigate(location.state ? location.state : '/')
-        })
-        .catch(err =>{
-            toast.error("Invalid email and password.")
-            setLoading(false)
-            return
-        })
-
-    }
-
-    const handleGoogle = () =>{
-        googleAuth()
-        .then(res =>{
-            toast.success("Successfully login")
-            setUser(res.user)
-            navigate(location?.state? location?.state : '/')
-        })
-    }
-    const handleGitHub = () =>{
-        gitHubAuth()
-            .then(res =>{
+            .then(res => {
                 setUser(res.user)
-            toast.success("Successfully login")
-            navigate(location?.state? location?.state : '/')
-        })
+                toast.success("Login successfully.")
+                setLoading(false)
+                navigate(location.state ? location.state : '/')
+            })
+            .catch(err => {
+                toast.error("Invalid email and password.")
+                setLoading(false)
+                return
+            })
+
+    }
+
+    const handleGoogle = () => {
+        googleAuth()
+            .then(res => {
+                toast.success("Successfully login")
+                axiosPublic.post(`/add-user`, { name: res.user.displayName, email: res.user.email, pphotoURL: res.user.photoURL, role: 'user' })
+                    .then(response => {
+
+                    })
+                setUser(res.user)
+                navigate(location?.state ? location?.state : '/')
+            })
+    }
+    const handleGitHub = () => {
+        gitHubAuth()
+            .then(res => {
+                setUser(res.user)
+                toast.success("Successfully login")
+                console.log(res.user);
+                axiosPublic.post(`/add-user`, { name: res.user.displayName, email: res.user.email, photoURL: res.user.photoURL, role: 'user' })
+                    .then(response => {
+
+                    })
+                navigate(location?.state ? location?.state : '/')
+            })
     }
 
     return (
@@ -100,12 +111,12 @@ const Login = () => {
                                             </svg>
 
                                         </button> :
-                                <button type="submit" className="text-gray-900 w-full text-center bg-white hover:bg-gray-100 border border-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 justify-center inline-flex items-center dark:focus:ring-gray-600 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:hover:bg-gray-700 me-2 mb-2">
-                                Login
-                            </button>
-}
+                                        <button type="submit" className="text-gray-900 w-full text-center bg-white hover:bg-gray-100 border border-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 justify-center inline-flex items-center dark:focus:ring-gray-600 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:hover:bg-gray-700 me-2 mb-2">
+                                            Login
+                                        </button>
+                                }
                                 <p className="text-sm font-light text-gray-500 dark:text-gray-400">
-                                  Don't have an account? <Link to={'/register'} className="font-medium text-primary-600 hover:underline dark:text-primary-500">Register here</Link>
+                                    Don't have an account? <Link to={'/register'} className="font-medium text-primary-600 hover:underline dark:text-primary-500">Register here</Link>
                                 </p>
                             </form>
 
