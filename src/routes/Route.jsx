@@ -27,6 +27,7 @@ import Users from '../pages/Dashboard/AdminPage/Users';
 import AdminRoutes from './AdminRoutes';
 import Allpets from '../pages/Dashboard/AdminPage/Allpets';
 import AllDonations from '../pages/Dashboard/AdminPage/AllDonations';
+import Error404 from '../pages/Error/Error404';
 
 
 
@@ -34,10 +35,12 @@ export const router = createBrowserRouter([
     {
       path: "/",
       element: <HomeLayout></HomeLayout>,
+      errorElement:<Error404/>,
       children:[
        {
         path: '/',
         element: <Home></Home>,
+     
        },
        {
         path: '/login',
@@ -68,6 +71,7 @@ export const router = createBrowserRouter([
     {
       path:'dashboard',
       element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
+      errorElement:<Error404/>,
       children: [
         {
           path:'',

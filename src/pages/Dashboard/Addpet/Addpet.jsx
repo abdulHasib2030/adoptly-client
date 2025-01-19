@@ -23,9 +23,13 @@ const Addpet = () => {
 
 
     const options = [
-        { value: 'chocolate', label: 'Chocolate' },
-        { value: 'strawberry', label: 'Strawberry' },
-        { value: 'vanilla', label: 'Vanilla' },
+        { value: 'cats', label: 'Cats' },
+        { value: 'dogs', label: 'Dogs' },
+        { value: 'rabbits', label: 'Rabbits' },
+        { value: 'fist', label: 'Fish' },
+        { value: 'birds', label: 'Birds' },
+        { value: 'turtle', label: 'Turtle' },
+        { value: 'others', label: 'others' },
     ];
 
     const formik = useFormik({

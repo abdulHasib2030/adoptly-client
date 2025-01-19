@@ -1,0 +1,45 @@
+[
+    {
+      "id": 1,
+      "name": "Cats",
+      "icon": "https://img.icons8.com/?size=100&id=120341&format=png&color=000000",
+      "description": "Explore various breeds and supplies for cats."
+    },
+    {
+      "id": 2,
+      "name": "Dogs",
+      "icon": "https://img.icons8.com/?size=100&id=30921&format=png&color=000000",
+      "description": "Find products and tips for your furry friends."
+    },
+    {
+      "id": 3,
+      "name": "Rabbits",
+      "icon": "https://img.icons8.com/?size=100&id=16082&format=png&color=000000",
+      "description": "Get the best for your cute little bunny."
+    },
+    {
+      "id": 4,
+      "name": "Fish",
+      "icon": "https://img.icons8.com/?size=100&id=HoKsW590IMku&format=png&color=000000",
+      "description": "Aquariums, food, and care for aquatic pets."
+    },
+    {
+      "id": 5,
+      "name": "Birds",
+      "icon": "https://img.icons8.com/?size=100&id=DJDQ86ayfL7C&format=png&color=000000",
+      "description": "Supplies for parakeets, parrots, and more."
+    },
+    {
+      "id": 6,
+      "name": "Turtle",
+      "icon": "https://img.icons8.com/?size=100&id=16106&format=png&color=000000",
+      "description": "Supplies for turtles, hamsters, and exotic pets."
+    },
+    {
+      "id": 7,
+      "name": "Others",
+      "icon": "https://img.icons8.com/?size=100&id=112293&format=png&color=000000",
+      "description": "Supplies for turtles, hamsters, and exotic pets."
+    }
+  ]
+  
