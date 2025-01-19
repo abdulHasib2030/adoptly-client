@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import image from '../../assets/banner2.jpg'
 import { useQuery } from '@tanstack/react-query';
 import useAxiosPublic from '../../hooks/useAxiosPublic';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import Loading from '../../components/Utlies/Loading';
 import { Button, Modal } from "flowbite-react";
 import { Label, TextInput } from "flowbite-react";
@@ -12,6 +12,7 @@ import toast from 'react-hot-toast';
 
 const PetDetails = () => {
     const axiosPublic = useAxiosPublic()
+    const navigate = useNavigate()
     const axiosSecure = useAxiosSecure()
     const { user } = useAuth()
     const [openModal, setOpenModal] = useState(false);
@@ -36,6 +37,10 @@ const PetDetails = () => {
 
     const handleAdoptForm = async(e) => {
         e.preventDefault()
+        if(!user){
+            toast.error("Login then adoped pet")
+            navigate('/login')
+        }
         const formData = new FormData(e.target);
         const adoptionData = {
             petId: selectedPet[0]._id,
@@ -113,7 +118,7 @@ const PetDetails = () => {
                                         <Label htmlFor="userName" value="Your Name" />
                                         <TextInput
                                             id="userName"
-                                            value={user.displayName}
+                                            value={user?.displayName}
                                             disabled
                                             className="w-full"
                                         />
@@ -122,7 +127,7 @@ const PetDetails = () => {
                                         <Label htmlFor="email" value="Your Email" />
                                         <TextInput
                                             id="email"
-                                            value={user.email}
+                                            value={user?.email}
                                             disabled
                                             className="w-full"
                                         />
@@ -144,7 +149,7 @@ const PetDetails = () => {
                                             id="address"
                                             name="address"
                                             placeholder="Enter your address"
-                                            defaultValue={user.address}
+                                           
                                             required
                                             className="w-full"
                                         />

@@ -22,23 +22,20 @@ const DonationCampain = () => {
                 {
                     donations.map(donation =>
                      <div className='border-2 p-5 rounded-xl'>
-                        <div>
+                        <div className='text-start'>
 
                             <img src={donation.image} class="rounded-lg" alt="not available" />
-                            <h3 class="text-xl font-bold mt-4 mb-2"></h3>
+                            <h3 class="text-xl font-bold mt-4 mb-2">{donation.name}</h3>
                             
                             <div class="flex gap-4 text-[#131313B3] items-center">
                                 
-                                <p>Birth: </p>
+                                <p>Maximum Donation Amount: {donation.donation} </p>
                             </div>
                             <div class="flex gap-4 text-[#131313B3] items-center">
-                                <i class="fa-solid fa-venus"></i>
-                                <p>Gender: </p>
+                                
+                                <p>Donated amount: {0} </p>
                             </div>
-                            <div class="flex gap-4 text-[#131313B3] items-center">
-                                <i class="fa-solid fa-dollar-sign"></i>
-                                <p >Price:  </p>
-                            </div>
+                           
                         </div>
                         <hr />
                         <div class="flex gap-4 mt-4">
@@ -47,7 +44,7 @@ const DonationCampain = () => {
                             </div> */}
 
                             {/* <button class="py-2 px-4 border-2 rounded-lg font-bold text-[#0E7A81] hover:bg-[#0E7A81] hover:text-white " id='adopt-${element.petId}'  >Adopt</button> */}
-                           <Link to={'/donation-campain/details/1'}>
+                           <Link to={`/donation-campain/details/${donation._id}`}>
                            <button class="py-2 px-4 border-2 rounded-lg font-bold text-[#0E7A81] hover:bg-[#0E7A81] hover:text-white" >Details</button>
                            </Link> 
                         </div>
