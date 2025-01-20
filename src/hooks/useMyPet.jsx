@@ -11,7 +11,7 @@ const useMyPet = () => {
     const {refetch, data: pets=[], isLoading} = useQuery({
         queryKey : ['pets', user?.email],
         queryFn: async () =>{
-            const res = await axiosSecure.get(`/pets?email=${user.email}`)
+            const res = await axiosSecure.get(`/my-pets?email=${user.email}`)
             return res.data
         }
        })

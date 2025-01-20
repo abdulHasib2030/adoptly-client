@@ -131,7 +131,7 @@ const Addpet = () => {
                                 <div class="sm:col-span-2">
                                     <label for="image" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Pet Image</label>
                                     <input name='file'  onChange={(event) => {
-    formik.setFieldValue("file", event.currentTarget.files[0]); // Update Formik's file field with the selected file
+    formik.setFieldValue("file", event.currentTarget.files[0]); 
   }}  class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="image" type="file" />
                                     {
                                         error?.image && <p className='text-red-500'>{error.image}</p>

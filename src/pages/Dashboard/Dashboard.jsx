@@ -6,7 +6,7 @@ import { RiMenu4Fill } from "react-icons/ri";
 import { IoAdd, IoExpandOutline } from 'react-icons/io5';
 import { IoMdMenu, IoMdWatch } from 'react-icons/io';
 import Addpet from './Addpet/Addpet';
-import { FaPlus, FaList, FaPaw, FaDonate, FaRegEye, FaHeart,  FaHandHoldingUsd, FaUsers } from 'react-icons/fa';
+import { FaPlus, FaList, FaPaw, FaDonate, FaRegEye, FaHeart,  FaHandHoldingUsd, FaUsers, FaHome } from 'react-icons/fa';
 
 import useAuth from '../../hooks/useAuth';
 import { CgUserAdd } from 'react-icons/cg';
@@ -42,6 +42,12 @@ const Dashboard = () => {
       </li>
       </>
       }
+      <li>
+         <Link to={'/dashboard'} class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+            <FaHome />
+            <span class="ms-3">Dashboard Home</span>
+         </Link>
+      </li>
       <li>
          <Link to={'addpet'} class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
             <FaPlus />

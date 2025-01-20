@@ -9,7 +9,7 @@ import Loading from '../components/Utlies/Loading';
 
 const HomeLayout = () => {
     const {loading} = useAuth()
-    // if(loading) return <Loading></Loading>
+    if(loading) return <Loading></Loading>
     return (
         <div>
             <Navbar></Navbar>
