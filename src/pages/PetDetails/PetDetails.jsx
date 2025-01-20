@@ -73,10 +73,10 @@ const PetDetails = () => {
                         <div className='mt-5 grid md:grid-cols-12 gap-4'>
                             <div className="w-full  md:col-span-8 space-y-2 p-4 text-start bg-white border border-gray-200 rounded-lg shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700">
                                 <h5 className="mb-2 text-3xl font-bold text-gray-900 dark:text-white">Name of pet <span className='font-semibold'>{pet[0].name}</span></h5>
-                                <div>
+                                <div className='dark:text-white'>
                                     <ul className='list-disc text-start grid grid-cols-2 gap-3'>
                                         <li>Age: {pet[0].age}</li>
-                                        <li>Category: {pet[0].catgory}</li>
+                                        <li>Category: {pet[0].category}</li>
                                         <li>Location: {pet[0].location}</li>
                                         <li>Added date: {pet[0].date}</li>
                                         <li>Adopted: <span className=''>{pet[0].adopted ? "True" : "False"}</span></li>

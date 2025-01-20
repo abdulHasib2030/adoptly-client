@@ -5,9 +5,21 @@ import { FaDollarSign, FaRegEdit } from "react-icons/fa";
 import { Button, Modal } from "flowbite-react";
 import { Link } from 'react-router-dom';
 
+import ProgressBar from "@ramonak/react-progress-bar";
+import useAxiosSecure from '../../../hooks/useAxiosSecure';
+import { Table } from "flowbite-react";
 const MyAddedDonation = () => {
     const [refetch, donation, isLoading] = useMyDonation()
     const [openModal, setOpenModal] = useState(false);
+
+    const axiosSecure = useAxiosSecure()
+
+    const handleViewDonationUser = async (donate) =>{
+        setOpenModal(true)
+        const res = await axiosSecure.get(`/payment-user/${donate._id}`)
+        console.log(res.data);
+    }
+
     return (
         <div>
             {
@@ -47,7 +59,7 @@ const MyAddedDonation = () => {
                                         </td>
                                         <td className="px-6 py-4">
                                             <div className="w-full bg-gray-200 rounded-full dark:bg-gray-700">
-                                                <div className="bg-blue-600 text-xs font-medium text-blue-100 text-center p-0.5 leading-none rounded-full" style={{ width: "45%" }}  > 45%</div>
+                                            <ProgressBar completed={Math.round((donate.collectDonation / donate.donation) * 100)} />
                                             </div>
                                         </td>
                                         <td className="px-6 py-4">
@@ -64,7 +76,7 @@ const MyAddedDonation = () => {
                                             </button></Link>
                                         </td>
                                         <td className="px-6 py-4">
-                                            <button type="button" onClick={() => setOpenModal(true)} class="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">View</button>
+                                            <button type="button" onClick={() => handleViewDonationUser(donate)} class="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">View</button>
                                         </td>
                                     </tr>
                                     )
@@ -86,15 +98,25 @@ const MyAddedDonation = () => {
         <Modal.Header>Terms of Service</Modal.Header>
         <Modal.Body>
           <div className="space-y-6">
-            <p className="text-base leading-relaxed text-gray-500 dark:text-gray-400">
-              With less than a month to go before the European Union enacts new consumer privacy laws for its citizens,
-              companies around the world are updating their terms of service agreements to comply.
-            </p>
-            <p className="text-base leading-relaxed text-gray-500 dark:text-gray-400">
-              The European Union’s General Data Protection Regulation (G.D.P.R.) goes into effect on May 25 and is meant
-              to ensure a common set of data rights in the European Union. It requires organizations to notify users as
-              soon as possible of high-risk data breaches that could personally affect them.
-            </p>
+          <div className="overflow-x-auto">
+      <Table striped>
+        <Table.Head>
+          <Table.HeadCell>User name</Table.HeadCell>
+          <Table.HeadCell>Amount</Table.HeadCell>
+          
+        </Table.Head>
+        <Table.Body className="divide-y">
+          <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
+            <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
+              
+            </Table.Cell>
+            <Table.Cell>Sliver</Table.Cell>
+          
+          </Table.Row>
+         
+        </Table.Body>
+      </Table>
+    </div>
           </div>
         </Modal.Body>
         <Modal.Footer>

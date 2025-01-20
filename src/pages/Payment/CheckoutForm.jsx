@@ -67,12 +67,14 @@ const CheckoutForm = ({ closeModal, recomendedDonation, donation }) => {
             if (paymentIntent.status === 'succeeded') {
                 console.log("abdul Hasib");
                 const payment = {
+                    name: user.displayName,
                     email: user.email,
                     transactionId: paymentIntent.id,
                     amount: amount,
                     date: new Date(),
                     statuse: 'success',
                     donationId: donation._id,
+
                 }
                 const response = await axiosSecure.post('/payment-success', payment)
                 console.log(response);

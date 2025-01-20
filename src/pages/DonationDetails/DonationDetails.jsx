@@ -30,7 +30,7 @@ const DonationDetails = () => {
         }
     })
     let description;
-    isLoading ? description = "" : description = donation.recomDonation[0].description
+    isLoading ? description = "" : description = donation.result.description
 
 
     return (
@@ -40,21 +40,21 @@ const DonationDetails = () => {
                 <div>
                     <div>
                         <div className='h-96 w-full mx-auto border-2'>
-                            <img src={donation.recomDonation[0].image} className='h-full w-full' alt="" />
+                            <img src={donation.result.image} className='h-full w-full' alt="" />
                         </div>
 
                         <div className='mt-5 grid md:grid-cols-12 gap-4'>
                             <div className="w-full  md:col-span-8 space-y-2 p-4 text-start bg-white border border-gray-200 rounded-lg shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700">
-                                <h5 className="mb-2 text-3xl font-bold text-gray-900 dark:text-white">Name of pet <span className='font-semibold'>{donation.recomDonation[0].name}</span></h5>
+                                <h5 className="mb-2 text-3xl font-bold text-gray-900 dark:text-white">Name of pet <span className='font-semibold'>{donation.result.name}</span></h5>
                                 <div className='dark:text-white'>
                                     <ul className='list-disc text-start dark:text-white grid grid-cols-2 gap-3'>
-                                        <li className='font-bold'>Maximum donation amount: <span className='font-normal'>  {donation.recomDonation[0].donation}</span></li>
-                                        <li className='font-bold'>Last date:  <span className='font-normal'> {donation.recomDonation[0].lst_date}</span></li>
-                                        <li className='font-bold'>Added date:  <span className='font-normal'> {donation.recomDonation[0].date}</span></li>
-                                        <li className='font-bold'>user:  <span className='font-normal'>{donation.recomDonation[0].user}</span> </li>
+                                        <li className='font-bold'>Maximum donation amount: <span className='font-normal'>  {donation.result.donation}</span></li>
+                                        <li className='font-bold'>Last date:  <span className='font-normal'> {donation.result.lst_date}</span></li>
+                                        <li className='font-bold'>Added date:  <span className='font-normal'> {donation.result.date}</span></li>
+                                        <li className='font-bold'>user:  <span className='font-normal'>{donation.result.user}</span> </li>
 
                                     </ul>
-                                    <p className='text-start mt-2 dark:text-white font-bold'>Short Description: <span className='font-normal'>{donation.recomDonation[0].shortDescription}</span></p>
+                                    <p className='text-start mt-2 dark:text-white font-bold'>Short Description: <span className='font-normal'>{donation.result.shortDescription}</span></p>
                                     <p className='font-bold dark:text-white'>Description:</p>
                                     <div className='' dangerouslySetInnerHTML={{ __html: description }} />
                                 </div>
@@ -86,7 +86,7 @@ const DonationDetails = () => {
                           
                             <div>
                                 <Elements stripe={stripePromise}>
-                                    <CheckoutForm closeModal={setOpenModal} recomendedDonation={setRecomendedDonation} donation={donation.recomDonation[0]}></CheckoutForm>
+                                    <CheckoutForm closeModal={setOpenModal} recomendedDonation={setRecomendedDonation} donation={donation.result}></CheckoutForm>
                                 </Elements>
                             </div>
                         </div>

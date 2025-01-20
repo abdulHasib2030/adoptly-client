@@ -92,6 +92,7 @@ const CreateDonation = () => {
                 date: new Date(),
                 user: user.email,
                 pause: false,
+                collectDonation: 0
             }
             const res = await axiosSecure.post(`/add-donation?email=${user.email}`, addData); // Send POST request
             if (res.data.acknowledged && res.data.insertedId) {
