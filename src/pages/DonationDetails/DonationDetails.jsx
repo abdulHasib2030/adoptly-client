@@ -10,6 +10,7 @@ import { Label, TextInput } from "flowbite-react";
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 import CheckoutForm from '../Payment/CheckoutForm';
+import moment from 'moment';
 
 const stripePromise = loadStripe(import.meta.env.VITE_Payment_Gateway_PK)
 
@@ -49,8 +50,8 @@ const DonationDetails = () => {
                                     <div className='dark:text-white'>
                                         <ul className='list-disc text-start dark:text-white grid grid-cols-2 gap-3'>
                                             <li className='font-bold'>Maximum donation amount: <span className='font-normal'>  {donation.result.donation}</span></li>
-                                            <li className='font-bold'>Last date:  <span className='font-normal'> {donation.result.lst_date}</span></li>
-                                            <li className='font-bold'>Added date:  <span className='font-normal'> {donation.result.date}</span></li>
+                                            <li className='font-bold'>Last date:  <span className='font-normal'> {moment(donation.result.lst_date).format('MMMM Do YYYY, h:mm:ss a')}</span></li>
+                                            <li className='font-bold'>Added date:  <span className='font-normal'> {moment(donation.result.date).format('MMMM Do YYYY, h:mm:ss a')}</span></li>
                                             <li className='font-bold'>user:  <span className='font-normal'>{donation.result.user}</span> </li>
 
                                         </ul>

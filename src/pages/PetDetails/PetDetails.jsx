@@ -9,6 +9,7 @@ import { Label, TextInput } from "flowbite-react";
 import useAuth from '../../hooks/useAuth';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
 import toast from 'react-hot-toast';
+import moment from 'moment';
 
 const PetDetails = () => {
     const axiosPublic = useAxiosPublic()
@@ -29,6 +30,7 @@ const PetDetails = () => {
     })
     let description = ""
     isLoading ? description : description = pet[0].description;
+  
 
     const handleAdoptBtn = (pet) => {
         setSelectedPet(pet)
@@ -78,7 +80,7 @@ const PetDetails = () => {
                                         <li>Age: {pet[0].age}</li>
                                         <li>Category: {pet[0].category}</li>
                                         <li>Location: {pet[0].location}</li>
-                                        <li>Added date: {pet[0].date}</li>
+                                        <li>Added date: {moment(pet[0].date).format('MMMM Do YYYY, h:mm:ss a')}</li>
                                         <li>Adopted: <span className=''>{pet[0].adopted ? "True" : "False"}</span></li>
                                         <li>User: {pet[0].user}</li>
                                     </ul>
