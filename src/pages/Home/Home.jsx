@@ -4,6 +4,9 @@ import Category from './Category';
 import EncouragePeople from './EncouragePeople';
 import AboutUs from './AboutUs';
 import NewAddedPet from './NewAddedPet';
+import CountUp from 'react-countup';
+import Accordions from './Accordions';
+
 
 
 const Home = () => {
@@ -14,6 +17,8 @@ const Home = () => {
        <EncouragePeople></EncouragePeople>
        <AboutUs></AboutUs>
        <NewAddedPet/>
+    
+       <Accordions />
         </div>
     );
 };
