@@ -36,7 +36,9 @@ const CheckoutForm = ({ closeModal, recomendedDonation, donation }) => {
             return
         }
         const card = elements.getElement(CardElement)
-        if (card === null) return
+        if (card === null) { 
+            setLoading(false) 
+            return}
         const { error, paymentMethod } = await stripe.createPaymentMethod({
             type: 'card',
             card

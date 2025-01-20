@@ -89,7 +89,7 @@ const Category = () => {
                                     <div>
 
                                         <img src={pet.image} class="rounded-lg w-full h-1/2" alt="not available" />
-                                        <h3 class="text-xl text-start font-bold mt-4 mb-2">{pet.name} {pet.age}</h3>
+                                        <h3 class="text-xl text-start font-bold mt-4 mb-2">{pet.name} </h3>
                                         <div class=" ] text-start">
                                            
                                             <p>Age: {pet.age}</p>
