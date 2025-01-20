@@ -20,7 +20,7 @@ const PetListing = () => {
             return res.data;
         }
     })
-console.log(pets);
+
     const options = [
         { value: "all", label: "All Categories" },
         { value: 'cats', label: 'Cats' },
