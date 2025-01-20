@@ -137,5 +137,5 @@ npm i stripe
 ```
 
 ## 🔗 Live Links
-https://adoptly-908e3.web.app/
-https://adoptly-908e3.firebaseapp.com/
+- https://adoptly-908e3.web.app/
+- https://adoptly-908e3.firebaseapp.com/
