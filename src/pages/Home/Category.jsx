@@ -80,7 +80,7 @@ const Category = () => {
                     {
                         isLoading ? <Loading></Loading>: 
                         pets.map(pet => <SwiperSlide>
-                        <div className="md:flex mt-5 dark:text-white">
+                        <div className="md:flex mt-5 dark:text-white w-full">
                             <div id="spinner" className=" text-center mx-auto hidden">
                                 <span className="text-center border-2 loading loading-bars loading-lg"></span>
                             </div>
@@ -88,7 +88,7 @@ const Category = () => {
                                 <div className='border-2 p-5 rounded-xl '>
                                     <div>
 
-                                        <img src={pet.image} class="rounded-lg w-full h-1/2" alt="not available" />
+                                        <img src={pet.image} class="rounded-lg  h-52 w-72" alt="not available" />
                                         <h3 class="text-xl text-start font-bold mt-4 mb-2">{pet.name} </h3>
                                         <div class=" ] text-start">
                                            

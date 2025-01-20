@@ -88,7 +88,7 @@ export const router = createBrowserRouter([
         {
           path:'update-pet/:id',
           element:<Updatepet />,
-          loader: ({params}) => fetch(`http://localhost:5000/pet/${params.id}`)
+          loader: ({params}) => fetch(`https://adoptly-nine.vercel.app/pet/${params.id}`)
         },
         {
           path: 'create-donation',
@@ -101,7 +101,7 @@ export const router = createBrowserRouter([
         {
           path:'update-donation/:id',
           element:<UpdateDonation />,
-          loader: ({params}) => fetch(`http://localhost:5000/update-donation/${params.id}`),
+          loader: ({params}) => fetch(`https://adoptly-nine.vercel.app/update-donation/${params.id}`),
         },
         {
           path: 'my-donation',

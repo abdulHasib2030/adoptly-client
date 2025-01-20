@@ -38,7 +38,7 @@ const NewAddedPet = () => {
                 {pets.map(pet =>
 
                     <div className="card-panel"><span className="flicking-index">
-                        <div class=" bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 ">
+                        <div class="dark:text-white bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 ">
                             <div>
 
                                 <img src={pet.image} class="rounded-lg w-full h-52" alt="not available" />

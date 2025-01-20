@@ -78,7 +78,7 @@ const PetListing = () => {
                             <div className='border-2 p-5 rounded-xl'>
                                 <div className='text-start'>
 
-                                    <img src={pet.image} class="rounded-lg" alt="not available" />
+                                    <img src={pet.image} class="rounded-lg w-72 h-52" alt="not available" />
                                     <h3 class="text-xl font-bold mt-4 mb-2 dark:text-white">{pet.name}</h3>
                                     <div class="flex gap-4 dark:text-white items-center">
 
