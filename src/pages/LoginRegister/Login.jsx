@@ -12,7 +12,7 @@ const Login = () => {
     const { user, setUser, loginUser, googleAuth, gitHubAuth } = useAuth()
     const navigate = useNavigate()
     const location = useLocation()
-    const [loading, setLoading] = useState(null)
+    const [loading, setLoading] = useState(false)
     const axiosPublic = useAxiosPublic()
 
     const handleLoginForm = (e) => {

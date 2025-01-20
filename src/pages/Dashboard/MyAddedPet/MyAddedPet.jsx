@@ -63,6 +63,7 @@ function MyAddedPet() {
     }
     axiosSecure.patch(`/update-pet`, updateData)
     .then(res =>{
+      refetch()
       console.log(res.data);
     })
   }

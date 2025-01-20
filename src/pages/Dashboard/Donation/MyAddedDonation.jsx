@@ -8,16 +8,43 @@ import { Link } from 'react-router-dom';
 import ProgressBar from "@ramonak/react-progress-bar";
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import { Table } from "flowbite-react";
+import Swal from 'sweetalert2';
 const MyAddedDonation = () => {
     const [refetch, donation, isLoading] = useMyDonation()
     const [openModal, setOpenModal] = useState(false);
+    const [donateUser, setDonateUser] = useState([])
 
     const axiosSecure = useAxiosSecure()
 
     const handleViewDonationUser = async (donate) =>{
         setOpenModal(true)
         const res = await axiosSecure.get(`/payment-user/${donate._id}`)
+        setDonateUser(res.data)
         console.log(res.data);
+    }
+    
+    const handlePauseBtn = (id, pause) =>{
+        Swal.fire({
+                    title: "Are you sure?",
+                    text: "You won't be able to revert this!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: `Yes, ${pause?'Unpause':'Pause'} it!`
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        axiosSecure.patch('/update-donation-status', {id:id, status: pause})
+                        .then(res =>{
+                            refetch()
+                            Swal.fire({
+                                title: "Accepted!",
+                                text: "Successfully updated.",
+                                icon: "success"
+                            }); 
+                        })
+                    }
+                });
     }
 
     return (
@@ -63,14 +90,14 @@ const MyAddedDonation = () => {
                                             </div>
                                         </td>
                                         <td className="px-6 py-4">
-                                            <button class="relative inline-flex items-center justify-center p-0.5  overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-green-400 to-blue-600 group-hover:from-green-400 group-hover:to-blue-600 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800">
+                                            <button onClick={()=> handlePauseBtn(donate._id, donate.pause)}  class="relative inline-flex items-center justify-center p-0.5  overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-green-400 to-blue-600 group-hover:from-green-400 group-hover:to-blue-600 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800">
                                                 <span class="relative px-3 py-2 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
-                                                    {donate.pause ? 'pause' : 'unpause'}
+                                                    {donate.pause ? 'unpause' : 'pause'}
                                                 </span>
                                             </button>
                                         </td>
                                         <td class="px-6 py-4">
-                                            <Link to={`/dashboard/update-donation/${donate._id}`}>
+                                            <Link to={`/dashboard/update-donation/${donate._id, donate.pause}`}>
                                             <button type="button" class="text-gray-900 bg-[#F7BE38] hover:bg-[#F7BE38]/90 focus:ring-4 focus:outline-none focus:ring-[#F7BE38]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-[#F7BE38]/50 me-2 mb-2">
                                                 <FaRegEdit className='mr-1'></FaRegEdit> Edit
                                             </button></Link>
@@ -106,13 +133,17 @@ const MyAddedDonation = () => {
           
         </Table.Head>
         <Table.Body className="divide-y">
-          <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
+            {
+                donateUser && donateUser.map(donateUsr =>  
+            <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
             <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
-              
+              {donateUsr.name}
             </Table.Cell>
-            <Table.Cell>Sliver</Table.Cell>
+            <Table.Cell> {donateUsr.amount}</Table.Cell>
           
-          </Table.Row>
+          </Table.Row>)
+            }
+        
          
         </Table.Body>
       </Table>

@@ -63,9 +63,9 @@ const AdoptionRequest = () => {
         }).then((result) => {
             if (result.isConfirmed) {
                 axiosSecure.delete(`/reject-adoption-request/${id}`)
-                refetch()
                 .then(res =>{
-                    console.log(res);
+                    console.log(res);   
+                    refetch()
                    Swal.fire({
                     title: "Accepted!",
                     text: "Successfully reject adoption request.",

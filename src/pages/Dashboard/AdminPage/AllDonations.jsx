@@ -48,8 +48,8 @@ const AllDonations = () => {
     const handleDonationStatus = (id, status) =>{
         axiosSecure.patch('/update-donation-status', {id:id, status: status})
         .then(res =>{
-            toast.success(`Successfully paused updated`)
             refetch()
+            toast.success(`Successfully paused updated`)
         })
     }
     return (

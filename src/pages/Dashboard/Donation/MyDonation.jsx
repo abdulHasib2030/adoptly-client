@@ -3,6 +3,7 @@ import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import { useQuery } from '@tanstack/react-query';
 import useAuth from '../../../hooks/useAuth';
 import Loading from '../../../components/Utlies/Loading';
+import Swal from 'sweetalert2';
 
 const MyDonation = () => {
     const axiosSecure = useAxiosSecure()
@@ -16,6 +17,35 @@ const MyDonation = () => {
             return res.data;
         }
     })
+
+    const handleRefundPayment = (id) =>{
+        Swal.fire({
+                    title: "Are you sure?",
+                    text: "You won't be able to revert this!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Yes, refund it!"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        axiosSecure.delete(`/delete-donation/${id}`)  
+                        .then(res =>{
+                     
+                            refetch()
+                           Swal.fire({
+                            title: "Accepted!",
+                            text: "Successfully refund request.",
+                            icon: "success"
+                        });  
+                        })
+                       
+        
+        
+                    }
+                });
+        
+    }
 
     return (
         <div>
@@ -45,7 +75,7 @@ const MyDonation = () => {
                                 {donation.donation}
                             </td>
                             <td className="px-6 py-4">
-                                <button className="text-white bg-red-600 hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-red-500 dark:hover:bg-red-600 dark:focus:ring-red-800">
+                                <button onClick={()=> handleRefundPayment(donation.payment_id)} className="text-white bg-red-600 hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-red-500 dark:hover:bg-red-600 dark:focus:ring-red-800">
                                     Ask for Refund
                                 </button>
                             </td>
