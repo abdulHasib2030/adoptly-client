@@ -27,7 +27,7 @@ This project is a full-featured Pet Adoption Platform designed to support pet ad
 4. **Donation Campaigns**:
    - Donate to campaigns using Stripe payment integration.
    - View active and completed donation campaigns.
-   - Track donation progress.
+
 
 5. **User Dashboard**:
    - View all pets added by the user.
@@ -39,7 +39,7 @@ This project is a full-featured Pet Adoption Platform designed to support pet ad
 1. **Admin Dashboard**:
    - Overview of the platform’s activities.
    - Access and manage all registered users.
-   - Update user roles (e.g., promote to admin).
+   - Update user roles (admin).
    - Access and manage all pets.
      - Update pet details.
      - Delete pets.
@@ -73,75 +73,69 @@ This project is a full-featured Pet Adoption Platform designed to support pet ad
 
 - **Refund Requests**:
   - Users can request refunds for donations via their dashboard.
-  - Admins can review and process refund requests.
+
 
 ---
 
-## Installation and Setup
 
-### Prerequisites
-- Node.js
-- MongoDB
-- Stripe Account
-- Cloudinary or imgBB for image uploads
-
-### Installation Steps
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/your-repo/pet-adoption-platform.git
-   cd pet-adoption-platform
-   ```
-
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
-
-3. Set up environment variables:
-   - Create a `.env` file in the root directory.
-   - Add the following variables:
-     ```env
-     MONGO_URI=<your_mongodb_connection_string>
-     STRIPE_SECRET_KEY=<your_stripe_secret_key>
-     CLOUDINARY_URL=<your_cloudinary_url>
-     ```
-
-4. Start the application:
-   ```bash
-   npm start
-   ```
-
-5. Access the application at `http://localhost:3000`.
-
----
 
 ## Technologies Used
 - **Frontend**: React.js
 - **Backend**: Node.js, Express.js
 - **Database**: MongoDB
 - **Payment Integration**: Stripe
-- **File Uploads**: Cloudinary / imgBB
+- **File Uploads**:  imgBB
 
----
 
-## Future Enhancements
-1. Add email notifications for donation campaigns and pet updates.
-2. Implement social login options (Google, Facebook).
-3. Add analytics dashboard for admins to track platform activities.
-4. Support for multi-language translations.
 
----
+## Installation
 
-## Contribution
-Feel free to contribute to this project by opening an issue or submitting a pull request.
+Install Adoptly with npm client side
 
----
+```bash
+npm i  @egjs/flicking-plugins
+npm i  @egjs/react-flicking
+npm i  @ramonak/react-progress-bar
+npm i  @stripe/react-stripe-js
+npm i  @stripe/stripe-js
+npm i  @tanstack/react-query
+npm i  @tanstack/react-router
+npm i  @tanstack/react-table
+npm i  axios
+npm i  firebase
+npm i  flowbite-react
+npm i  formik
+npm i  jsonwebtoken
+npm i  localforage
+npm i  lottie-react
+npm i  match-sorter
+npm i  motion
+npm i  react
+npm i  react-countup
+npm i  react-dom
+npm i  react-hot-toast
+npm i  react-icons
+npm i  react-intersection-observer
+npm i  react-loading-skeleton
+npm i  react-quill
+npm i  react-router-dom
+npm i  react-select
+npm i  sort-by
+npm i  sweetalert2
+npm i  swiper
+```
+Install Adoptly with npm backend side
 
-## License
-This project is licensed under the MIT License. See the LICENSE file for details.
+```bash
+npm i cookie-parser
+npm i cors
+npm i dotenv
+npm i express
+npm i jsonwebtoken
+npm i mongodb
+npm i stripe
+```
 
----
-
-## Contact
-For inquiries or support, please contact [your-email@example.com].
-
+## 🔗 Live Links
+https://adoptly-908e3.web.app/
+https://adoptly-908e3.firebaseapp.com/
