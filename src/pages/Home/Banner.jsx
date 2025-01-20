@@ -14,9 +14,9 @@ const Banner = () => {
                     platform. Browse, connect, and adopt from a variety of pets waiting for a loving home. Your path to
                     a lifelong friendship starts here!</p>
                 <div className=" flex items-center justify-center">
-                    <button className="py-4 px-8 rounded-2xl flex bg-[#0E7A81] text-white font-bold mt-7 "><a
+                    {/* <button className="py-4 px-8 rounded-2xl flex bg-[#0E7A81] text-white font-bold mt-7 "><a
                             href="#adapt-best-friend">View
-                            More</a></button>
+                            More</a></button> */}
               </div>
 
                 </div>

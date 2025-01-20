@@ -6,7 +6,7 @@ import Loading from '../components/Utlies/Loading';
 const LogRedirect = ({children}) => {
     const {user, loading} = useAuth()
     const location = useLocation()
-    if(loading) return <Loading></Loading>
+    // if(loading) return <Loading></Loading>
     if (user){
       
    return location.state ? <Navigate to='/'></Navigate> : <Navigate to={'/'}></Navigate>

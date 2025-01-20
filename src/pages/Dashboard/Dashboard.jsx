@@ -6,9 +6,11 @@ import { RiMenu4Fill } from "react-icons/ri";
 import { IoAdd, IoExpandOutline } from 'react-icons/io5';
 import { IoMdMenu, IoMdWatch } from 'react-icons/io';
 import Addpet from './Addpet/Addpet';
+import { FaPlus, FaList, FaPaw, FaDonate, FaRegEye, FaHeart,  FaHandHoldingUsd, FaUsers } from 'react-icons/fa';
 
 import useAuth from '../../hooks/useAuth';
 import { CgUserAdd } from 'react-icons/cg';
+
 const Dashboard = () => {
    const [sidebar, setSidebar] = useState(true)
    const {isAdmin} = useAuth()
@@ -22,19 +24,19 @@ const Dashboard = () => {
       <>
        <li>
          <Link to={'users'} class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-            <CgUserAdd className='text-2xl'/>
+            <FaUsers className='text-2xl'/>
             <span class="ms-3">All users</span>
          </Link>
       </li>
       <li>
          <Link to={'pets'} class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-         
+           <FaPaw />
             <span class="ms-3">All pets</span>
          </Link>
       </li>
       <li>
          <Link to={'donations'} class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-            <IoAdd></IoAdd>
+           <FaHandHoldingUsd />
             <span class="ms-3">All Donations</span>
          </Link>
       </li>
@@ -42,37 +44,37 @@ const Dashboard = () => {
       }
       <li>
          <Link to={'addpet'} class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-            <IoAdd></IoAdd>
+            <FaPlus />
             <span class="ms-3">Add a pet</span>
          </Link>
       </li>
       <li>
          <Link to={'my-added-pet'} class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-            <IoMdMenu></IoMdMenu>
+            <FaList />
             <span class="ms-3">My added pet</span>
          </Link>
       </li>
       <li>
          <Link to={'adoption-request'} class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-            <IoExpandOutline />
+            <FaPaw />
             <span class="ms-3">Adoption Request</span>
          </Link>
       </li>
       <li>
          <Link to={'create-donation'} class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-            <IoExpandOutline />
+            <FaDonate />
             <span class="ms-3">Create Donation Campaign</span>
          </Link>
       </li>
       <li>
          <Link to={'my-added-donation'} class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-            <IoExpandOutline />
+            <FaRegEye />
             <span class="ms-3">My Donation Campaigns</span>
          </Link>
       </li>
       <li>
          <Link to={'my-donation'} class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-            <IoExpandOutline />
+            <FaHeart />
             <span class="ms-3">My Donations</span>
          </Link>
       </li>

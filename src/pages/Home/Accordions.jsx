@@ -7,7 +7,7 @@ const Accordions = () => {
       <div className=" mx-auto mt-10 p-4">
       {/* About Us Section */}
       {/* <div className="bg-white dark:bg-gray-800 dark:text-gray-200 rounded-lg shadow-md p-6 mb-8"> */}
-        <h2 className="font-extrabold text-4xl mb-2">
+        <h2 className="font-extrabold text-4xl mb-2 dark:text-white">
           FAQ
         </h2>
            <Accordion collapseAll className='text-start'>
