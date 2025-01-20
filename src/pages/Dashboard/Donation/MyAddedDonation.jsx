@@ -97,7 +97,7 @@ const MyAddedDonation = () => {
                                             </button>
                                         </td>
                                         <td class="px-6 py-4">
-                                            <Link to={`/dashboard/update-donation/${donate._id, donate.pause}`}>
+                                            <Link to={`/dashboard/update-donation/${donate._id}`}>
                                             <button type="button" class="text-gray-900 bg-[#F7BE38] hover:bg-[#F7BE38]/90 focus:ring-4 focus:outline-none focus:ring-[#F7BE38]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-[#F7BE38]/50 me-2 mb-2">
                                                 <FaRegEdit className='mr-1'></FaRegEdit> Edit
                                             </button></Link>

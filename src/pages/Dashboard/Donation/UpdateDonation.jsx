@@ -84,7 +84,8 @@ const UpdateDonation = () => {
             }
         )
         if (data.success) {
-            const updateData = {
+            console.log(donation, name, donation);
+            const addData = {
                 id:_id,
                 image: data.data.display_url,
                 name: name,
@@ -93,10 +94,12 @@ const UpdateDonation = () => {
                 shortDescription: shortDescription,
                 description: value,
                 user: user.email,
-                pause: false,
-                lst_update: new Date()
+       
+                // lst_update: new Date()
             }
-            const res = await axiosSecure.put(`/update-donation`, updateData); // Send put request
+            console.log(addData);
+            const res = await axiosSecure.patch('/update-donation', addData) // Send put request
+            console.log(res.data);
             if (res.data.acknowledged || res.data.modifiedCount > 0) {
                 toast.success("Successfully updated Donation Campaign")
                 setLoading(false)
@@ -137,7 +140,7 @@ const UpdateDonation = () => {
                                 </div>
                                 <div class="sm:col-span-2">
                                     <label for="" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Pet name</label>
-                                    <input type="text" name="name" id="name" onChange={formik.handleChange} value={formik.values.name} class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Enter pet's name"  required="" />
+                                    <input type="text" defaultValue={name} name="name" id="name" onChange={formik.handleChange} value={formik.values.name} class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Enter pet's name"  required="" />
                                     {
                                         error?.name && <p className='text-red-500'>{error.name}</p>
                                     }
@@ -151,7 +154,7 @@ const UpdateDonation = () => {
                                 </div>
                                 <div class="w-full">
                                     <label for="date" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Last Date of Donation</label>
-                                    <input type="date" name="date" id="date" onChange={formik.handleChange} value={formik.values.date} class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" required="" />
+                                    <input type="date" defaultValue={date} name="date" id="date" onChange={formik.handleChange} value={formik.values.date} class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" required="" />
                                     {
                                         error?.date && <p className='text-red-500'>{error.date}</p>
                                     }
@@ -159,7 +162,7 @@ const UpdateDonation = () => {
                               
                                 <div class="sm:col-span-2">
                                     <label for="" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Short Description</label>
-                                    <input type="text" name="shortDescription" id="shortDescription" onChange={formik.handleChange} value={formik.values.shortDescription} class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"  required="" />
+                                    <input type="text" defaultValue={shortDescription} name="shortDescription" id="shortDescription" onChange={formik.handleChange} value={formik.values.shortDescription} class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"  required="" />
                                     {
                                         error?.shortDescription && <p className='text-red-500'>{error.shortDescription}</p>
                                     }
