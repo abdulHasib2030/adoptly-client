@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import toast from 'react-hot-toast';
 import Loading from '../../../components/Utlies/Loading';
+import { Helmet } from 'react-helmet-async';
 
 const Allpets = () => {
     const axiosSecure = useAxiosSecure()
@@ -56,6 +57,9 @@ const Allpets = () => {
             {
                 isLoading ? <Loading></Loading> :
             <div className="overflow-x-auto">
+                      <Helmet>
+                                    <title>All pets</title>
+                                </Helmet>
                 <Table striped>
                     <Table.Head>
                         <Table.HeadCell>pet name</Table.HeadCell>

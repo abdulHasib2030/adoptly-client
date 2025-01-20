@@ -11,6 +11,7 @@ import {
 import Loading from '../../../components/Utlies/Loading';
 import { Navigate, useNavigate } from 'react-router-dom';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
+import { Helmet } from 'react-helmet-async';
 
 
 function MyAddedPet() {
@@ -59,13 +60,13 @@ function MyAddedPet() {
   const handleAdopt = (value) => {
     const updateData = {
       id: value._id,
-      adopted : true
+      adopted: true
     }
     axiosSecure.patch(`/update-pet`, updateData)
-    .then(res =>{
-      refetch()
-      console.log(res.data);
-    })
+      .then(res => {
+        refetch()
+        console.log(res.data);
+      })
   }
 
   const columns = useMemo(
@@ -98,9 +99,9 @@ function MyAddedPet() {
       {
         accessorKey: 'isAdopted',
         header: 'Adoption Status',
-        cell: ({row}) => (
+        cell: ({ row }) => (
           <span
-            className={`px-2 py-1 rounded text-white ${ row.original.adopted ? 'bg-green-500' : 'bg-red-500'
+            className={`px-2 py-1 rounded text-white ${row.original.adopted ? 'bg-green-500' : 'bg-red-500'
               }`}
           >
             {row.original.adopted ? 'Adopted' : 'Not Adopted'}
@@ -163,6 +164,9 @@ function MyAddedPet() {
         isLoading ?
           <Loading></Loading> :
           <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+            <Helmet>
+              <title>My added pets</title>
+            </Helmet>
             <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
               <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 {table.getHeaderGroups().map(headerGroup => (
@@ -184,7 +188,7 @@ function MyAddedPet() {
                 ))}
               </thead>
               <tbody className="bg-white divide-y divide-gray-200 dark:bg-gray-800 dark:divide-gray-700">
-                {table.getRowModel().rows.map((row )=> (
+                {table.getRowModel().rows.map((row) => (
                   <tr key={row.id} className="hover:bg-gray-50 dark:hover:bg-gray-600">
                     {row.getVisibleCells().map((cell) => (
                       <td key={cell.id} className="px-6 py-4">
@@ -201,29 +205,29 @@ function MyAddedPet() {
             {/* Pagination Controls */}
             {
               pets.length > 10 &&
-            <div className="flex justify-between items-center py-3">
-              <button
-                onClick={() => table.previousPage()}
-                disabled={!table.getCanPreviousPage()}
-                className="px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"
-              >
-                Previous
-              </button>
-              <span className='dark:text-white'>
-                Page{' '}
-                <strong className='dark:text-white'>
-                  {table.getState().pagination.pageIndex + 1} of{' '}
-                  {table.getPageCount()}
-                </strong>
-              </span>
-              <button
-                onClick={() => table.nextPage()}
-                disabled={!table.getCanNextPage()}
-                className="px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"
-              >
-                Next
-              </button>
-            </div>
+              <div className="flex justify-between items-center py-3">
+                <button
+                  onClick={() => table.previousPage()}
+                  disabled={!table.getCanPreviousPage()}
+                  className="px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"
+                >
+                  Previous
+                </button>
+                <span className='dark:text-white'>
+                  Page{' '}
+                  <strong className='dark:text-white'>
+                    {table.getState().pagination.pageIndex + 1} of{' '}
+                    {table.getPageCount()}
+                  </strong>
+                </span>
+                <button
+                  onClick={() => table.nextPage()}
+                  disabled={!table.getCanNextPage()}
+                  className="px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"
+                >
+                  Next
+                </button>
+              </div>
             }
           </div>
 

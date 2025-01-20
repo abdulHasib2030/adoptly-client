@@ -10,6 +10,7 @@ import useAuth from '../../hooks/useAuth';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
 import toast from 'react-hot-toast';
 import moment from 'moment';
+import { Helmet } from 'react-helmet-async';
 
 const PetDetails = () => {
     const axiosPublic = useAxiosPublic()
@@ -30,16 +31,16 @@ const PetDetails = () => {
     })
     let description = ""
     isLoading ? description : description = pet[0].description;
-  
+
 
     const handleAdoptBtn = (pet) => {
         setSelectedPet(pet)
         setOpenModal(true)
     }
 
-    const handleAdoptForm = async(e) => {
+    const handleAdoptForm = async (e) => {
         e.preventDefault()
-        if(!user){
+        if (!user) {
             toast.error("Login then adoped pet")
             navigate('/login')
         }
@@ -54,17 +55,20 @@ const PetDetails = () => {
             address: formData.get("address"),
         };
         console.log(adoptionData);
-       const res = await axiosSecure.post('/adopt', adoptionData)
-       if(res.data.acknowledged && res.data.insertedId){
-        toast.success("Successfully adopt request.")
-        setOpenModal(false)
-       }
-        
+        const res = await axiosSecure.post('/adopt', adoptionData)
+        if (res.data.acknowledged && res.data.insertedId) {
+            toast.success("Successfully adopt request.")
+            setOpenModal(false)
+        }
+
     }
 
     return (
 
         <div className='mt-16'>
+            <Helmet>
+                <title>{isLoading? "Adoptly": pet[0].name}</title>
+            </Helmet>
             {
                 isLoading ? <Loading></Loading> :
                     <div>
@@ -151,7 +155,7 @@ const PetDetails = () => {
                                             id="address"
                                             name="address"
                                             placeholder="Enter your address"
-                                           
+
                                             required
                                             className="w-full"
                                         />

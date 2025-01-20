@@ -11,6 +11,7 @@ import useAuth from '../../../hooks/useAuth';
 import ReactQuill from 'react-quill';
 import axios from 'axios';
 import toast from 'react-hot-toast';
+import { Helmet } from 'react-helmet-async';
 
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_IMGBB_API_KEY}`
 const UpdateDonation = () => {
@@ -117,6 +118,9 @@ const UpdateDonation = () => {
 
     return (
         <div >
+            <Helmet>
+                                <title>Updated Dontaion | {name}</title>
+                            </Helmet>
             <h1 className='text-4xl text-center dark:text-white'>Update Donation campaign</h1>
             <div>
 

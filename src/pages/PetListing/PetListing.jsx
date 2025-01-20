@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import useAxiosPublic from '../../hooks/useAxiosPublic';
 import Select from 'react-select';
+import { Helmet } from 'react-helmet-async';
 
 const PetListing = () => {
     const [dropdown, setDropdown] = useState(true)
@@ -39,7 +40,9 @@ const PetListing = () => {
 
     return (
         <div className='mt-24'>
-
+    <Helmet>
+        <title>Adoptly | All pet</title>
+    </Helmet>
             <div>
 
                 <div class="max-w-lg mt-4 ">

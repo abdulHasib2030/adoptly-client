@@ -5,6 +5,7 @@ import { useQuery } from '@tanstack/react-query';
 import useAuth from '../../../hooks/useAuth';
 import Loading from '../../../components/Utlies/Loading';
 import Swal from 'sweetalert2';
+import { Helmet } from 'react-helmet-async';
 
 const AdoptionRequest = () => {
 
@@ -32,26 +33,26 @@ const AdoptionRequest = () => {
             if (result.isConfirmed) {
                 const updateData = {
                     id: id,
-                    adopted : true
-                  }
-                  axiosSecure.patch(`/update-pet`, updateData)
-                  .then(res =>{
-                    console.log(res.data);
-                    refetch() 
-                    Swal.fire({
-                    title: "Accepted!",
-                    text: "Successfully accept adoption request.",
-                    icon: "success"
-                });
-                  })
-               
+                    adopted: true
+                }
+                axiosSecure.patch(`/update-pet`, updateData)
+                    .then(res => {
+                        console.log(res.data);
+                        refetch()
+                        Swal.fire({
+                            title: "Accepted!",
+                            text: "Successfully accept adoption request.",
+                            icon: "success"
+                        });
+                    })
+
 
 
             }
         });
     }
 
-    const handleRejectAdoptionRequest = (id) =>{
+    const handleRejectAdoptionRequest = (id) => {
         Swal.fire({
             title: "Are you sure?",
             text: "You won't be able to revert this!",
@@ -63,16 +64,16 @@ const AdoptionRequest = () => {
         }).then((result) => {
             if (result.isConfirmed) {
                 axiosSecure.delete(`/reject-adoption-request/${id}`)
-                .then(res =>{
-                    console.log(res);   
-                    refetch()
-                   Swal.fire({
-                    title: "Accepted!",
-                    text: "Successfully reject adoption request.",
-                    icon: "success"
-                });  
-                })
-               
+                    .then(res => {
+                        console.log(res);
+                        refetch()
+                        Swal.fire({
+                            title: "Accepted!",
+                            text: "Successfully reject adoption request.",
+                            icon: "success"
+                        });
+                    })
+
 
 
             }
@@ -85,6 +86,9 @@ const AdoptionRequest = () => {
             {
                 isLoading ? <Loading /> :
                     <Table>
+                        <Helmet>
+                            <title>Adoption request</title>
+                        </Helmet>
                         <Table.Head>
                             <Table.HeadCell>User name</Table.HeadCell>
                             <Table.HeadCell>Email</Table.HeadCell>
@@ -107,9 +111,9 @@ const AdoptionRequest = () => {
                                             <Table.Cell>{adop.address}</Table.Cell>
                                             <Table.Cell>
                                                 <Button.Group outline className=''>
-                                                    <Button onClick={()=>handleAcceptAdoptionRequest(adop.petId)} gradientMonochrome="success">Accept</Button>
+                                                    <Button onClick={() => handleAcceptAdoptionRequest(adop.petId)} gradientMonochrome="success">Accept</Button>
 
-                                                    <Button onClick={()=> handleRejectAdoptionRequest(adop._id)} gradientMonochrome="failure">Reject</Button>
+                                                    <Button onClick={() => handleRejectAdoptionRequest(adop._id)} gradientMonochrome="failure">Reject</Button>
                                                 </Button.Group>
                                             </Table.Cell>
                                         </Table.Row>

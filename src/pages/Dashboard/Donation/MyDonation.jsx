@@ -4,6 +4,7 @@ import { useQuery } from '@tanstack/react-query';
 import useAuth from '../../../hooks/useAuth';
 import Loading from '../../../components/Utlies/Loading';
 import Swal from 'sweetalert2';
+import { Helmet } from 'react-helmet-async';
 
 const MyDonation = () => {
     const axiosSecure = useAxiosSecure()
@@ -52,6 +53,9 @@ const MyDonation = () => {
             {
                 isLoading?<Loading/>:
             <div className="overflow-x-auto relative shadow-md sm:rounded-lg">
+                <Helmet>
+                    <title>My Donations</title>
+                </Helmet>
                 <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                     <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                         <tr>

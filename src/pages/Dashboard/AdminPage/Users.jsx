@@ -4,6 +4,7 @@ import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import Loading from '../../../components/Utlies/Loading';
 import { Table } from "flowbite-react";
 import Swal from 'sweetalert2'
+import { Helmet } from 'react-helmet-async';
 
 const Users = () => {
   const axiosSecure = useAxiosSecure()
@@ -45,6 +46,9 @@ const Users = () => {
       {
         isLoading ? <Loading></Loading> :
           <div className="overflow-x-auto">
+            <Helmet>
+                    <title>All users</title>
+                </Helmet>
             <div className='dark:text-white text-2xl font-bold my-2'><h1>Total users {users.length}</h1></div>
             <Table striped>
               <Table.Head>

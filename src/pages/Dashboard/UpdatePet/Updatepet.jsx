@@ -9,6 +9,7 @@ import useAxiosPublic from '../../../hooks/useAxiosPublic';
 import toast from 'react-hot-toast';
 import { useLoaderData, useNavigate } from 'react-router-dom';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
+import { Helmet } from 'react-helmet-async';
 
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_IMGBB_API_KEY}`
 
@@ -49,7 +50,7 @@ const Updatepet = () => {
 
     const handleAddpetForm = async (e) => {
         e.preventDefault()
-        
+
         const { file, name, age, location, owner } = formik.values;
         if (!file) {
             setError({ image: "Upload pet image" })
@@ -99,7 +100,7 @@ const Updatepet = () => {
                 image: data.data.display_url,
                 name: name,
                 age: age,
-                category: selectedOption.value ? selectedOption.value : category ,
+                category: selectedOption.value ? selectedOption.value : category,
                 location: location,
                 note_owner: owner,
                 description: value,
@@ -118,10 +119,13 @@ const Updatepet = () => {
         }
     }
     const index = (options.findIndex(opton => opton.value === selectedOption))
-  
+
 
     return (
         <div >
+            <Helmet>
+                <title>Updated pet | {name}</title>
+            </Helmet>
             <h1 className='text-4xl text-center dark:text-white'>Update a pet</h1>
             <div>
 
@@ -162,7 +166,7 @@ const Updatepet = () => {
                                         defaultValue={selectedOption}
                                         onChange={setSelectedOption}
                                         options={options}
-                                     
+
 
                                     />
                                     {
@@ -204,7 +208,7 @@ const Updatepet = () => {
                                 </button> :
                                     <button class=" inline-flex mt-5 items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-green-400 to-blue-600 group-hover:from-green-400 group-hover:to-blue-600 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800">
                                         <span class="relative   px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
-                                           Update Adoption Info
+                                            Update Adoption Info
                                         </span>
                                     </button>
                             }

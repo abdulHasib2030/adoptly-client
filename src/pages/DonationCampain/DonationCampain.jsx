@@ -3,6 +3,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import useAxiosPublic from '../../hooks/useAxiosPublic';
 import Loading from '../../components/Utlies/Loading';
+import { Helmet } from 'react-helmet-async';
 
 const DonationCampain = () => {
     const axiosPublic = useAxiosPublic()
@@ -16,6 +17,9 @@ const DonationCampain = () => {
 
     return (
         <div className='my-32'>
+             <Helmet>
+                    <title>Adoptly | All Donation</title>
+                </Helmet>
             {
                 isLoading ? <Loading></Loading>:
              <div id="item-show" className='grid md:grid-cols-2 dark:text-white grid-cols-1 lg:grid-cols-3 gap-8'>

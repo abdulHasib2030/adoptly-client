@@ -9,6 +9,7 @@ import useAxiosPublic from '../../../hooks/useAxiosPublic';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
+import { Helmet } from 'react-helmet-async';
 
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_IMGBB_API_KEY}`
 const CreateDonation = () => {
@@ -31,7 +32,7 @@ const CreateDonation = () => {
             donation: '',
             date: '',
             shortDescription: '',
-            
+
         },
         onSubmit: values => {
             alert(JSON.stringify(values, null, 2));
@@ -46,7 +47,7 @@ const CreateDonation = () => {
             setError({ image: "Pet picture is required" })
             return
         }
-        if(!name){
+        if (!name) {
             setError({ name: "Pet name is required" })
             return
         }
@@ -63,8 +64,8 @@ const CreateDonation = () => {
             setError({ shortDescription: "Short description is required" })
             return
         }
-      
-       
+
+
         if (!value) {
             setError({ description: "Enter pet details" })
             return
@@ -72,8 +73,8 @@ const CreateDonation = () => {
         else {
             setError({})
         }
-    
-         setLoading(true)
+
+        setLoading(true)
         const { data } = await axios.post(image_hosting_api, { image: file },
             {
                 headers: {
@@ -112,6 +113,9 @@ const CreateDonation = () => {
 
     return (
         <div >
+            <Helmet>
+                <title>Create Donation campaign</title>
+            </Helmet>
             <h1 className='text-4xl text-center dark:text-white'>Create Donation campaign</h1>
             <div>
 
@@ -131,7 +135,7 @@ const CreateDonation = () => {
                                 </div>
                                 <div class="sm:col-span-2">
                                     <label for="" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Pet name</label>
-                                    <input type="text" name="name" id="name" onChange={formik.handleChange} value={formik.values.name} class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Enter pet's name"  required="" />
+                                    <input type="text" name="name" id="name" onChange={formik.handleChange} value={formik.values.name} class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Enter pet's name" required="" />
                                     {
                                         error?.name && <p className='text-red-500'>{error.name}</p>
                                     }
@@ -150,10 +154,10 @@ const CreateDonation = () => {
                                         error?.date && <p className='text-red-500'>{error.date}</p>
                                     }
                                 </div>
-                              
+
                                 <div class="sm:col-span-2">
                                     <label for="" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Short Description</label>
-                                    <input type="text" name="shortDescription" id="shortDescription" onChange={formik.handleChange} value={formik.values.shortDescription} class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"  required="" />
+                                    <input type="text" name="shortDescription" id="shortDescription" onChange={formik.handleChange} value={formik.values.shortDescription} class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" required="" />
                                     {
                                         error?.shortDescription && <p className='text-red-500'>{error.shortDescription}</p>
                                     }

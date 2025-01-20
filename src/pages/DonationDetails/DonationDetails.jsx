@@ -11,6 +11,7 @@ import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 import CheckoutForm from '../Payment/CheckoutForm';
 import moment from 'moment';
+import { Helmet } from 'react-helmet-async';
 
 const stripePromise = loadStripe(import.meta.env.VITE_Payment_Gateway_PK)
 
@@ -36,9 +37,13 @@ const DonationDetails = () => {
 
     return (
         <div className='mt-16'>
+             
             {
                 isLoading ? <Loading></Loading> :
                     <div>
+                        <Helmet>
+                    <title>{donation.result.name}</title>
+                </Helmet>
                         <div>
                             <div className='h-96 w-full mx-auto border-2'>
                                 <img src={donation.result.image} className='h-full w-full' alt="" />
