@@ -1,6 +1,5 @@
-![Adoptly](https://i.ibb.co.com/bRJzBCC0/Screenshot-2025-02-05-172220.png)
+![Adoptly](https://i.ibb.co.com/hJc3y7kM/Screenshot-2025-02-05-172220.png)
 # Pet Adoption Platform - Adoptly
-
 ## Purpose
 This project is a full-featured Pet Adoption Platform designed to support pet adoption and donation campaigns. It includes features for users to manage their pets and donations, while also empowering admins to manage users, pets, and donation campaigns.
 
