@@ -83,7 +83,6 @@ const Updatepet = () => {
         else {
             setError({})
         }
-        // console.log(file);
         setLoading(true)
         // if()
 
@@ -105,9 +104,7 @@ const Updatepet = () => {
                 note_owner: owner,
                 description: value,
             }
-            console.log(selectedOption.value);
             const res = await axiosSecure.patch('/update-pet', addData)
-            console.log(res.data);
             if (res.data.acknowledged || res.data.modifiedCount > 0) {
                 toast.success("Successfully updated.")
                 navigate('/dashboard/my-added-pet')

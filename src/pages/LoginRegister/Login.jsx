@@ -26,7 +26,8 @@ const Login = () => {
                 setUser(res.user)
                 toast.success("Login successfully.")
                 setLoading(false)
-                navigate(location.state ? location.state : '/')
+                navigate(location.state ? location.state:'/' );
+            
             })
             .catch(err => {
                 toast.error("Invalid email and password.")
@@ -35,6 +36,7 @@ const Login = () => {
             })
 
     }
+    // console.log(location.state);
 
     const handleGoogle = () => {
         googleAuth()
@@ -53,7 +55,6 @@ const Login = () => {
             .then(res => {
                 setUser(res.user)
                 toast.success("Successfully login")
-                console.log(res.user);
                 axiosPublic.post(`/add-user`, { name: res.user.displayName, email: res.user.email, photoURL: res.user.photoURL, role: 'user' })
                     .then(response => {
 

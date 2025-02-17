@@ -1,9 +1,11 @@
-import { useQuery } from '@tanstack/react-query';
+import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import useAxiosPublic from '../../hooks/useAxiosPublic';
 import Select from 'react-select';
 import { Helmet } from 'react-helmet-async';
+import { useInView } from 'react-intersection-observer';
+import Loading from '../../components/Utlies/Loading';
 
 const PetListing = () => {
     const [dropdown, setDropdown] = useState(true)
@@ -13,14 +15,34 @@ const PetListing = () => {
         dropdown ? setDropdown(false) : setDropdown(true)
     }
     const axiosPublic = useAxiosPublic()
+    const {ref, inView} = useInView()
 
-    const { refetch, data: pets = [] } = useQuery({
-        queryKey: ['pets'],
-        queryFn: async () => {
-            const res = await axiosPublic.get(`/pets?category=${selectedOption?.value}&search=${search}`)
-            return res.data;
-        }
-    })
+    const fetchPets = async (page) => {
+        console.log(page);
+        const response = await fetch(`https://adoptly-nine.vercel.app/pets-scroll?category=${selectedOption.value}&search=${search}&page=${page.pageParam}&limit=10`);
+        const data = await response.json();
+       console.log(data);
+        return data;
+    };
+
+
+       const {
+           data,
+           fetchNextPage,
+           hasNextPage,
+           isFetching, isFetchingNextPage, refetch, isPending, error, isLoading
+       } = useInfiniteQuery({
+           queryKey: ['pet'],
+           queryFn: fetchPets,
+           staleTime: 10000,
+           initialPageParam: 1, // Start at page 1
+           getNextPageParam: (lastPage, allPages) => {
+            // return lastPage?.hasMore ? allPages.length + 1 : undefined;
+               return lastPage?.length  === null ? 0 : allPages?.length + 1
+           },
+       });
+
+ 
 
     const options = [
         { value: "all", label: "All Categories" },
@@ -34,13 +56,32 @@ const PetListing = () => {
     ];
 
  
-    useEffect(()=>{
-            refetch()
-        }, [search])
+   useEffect(() => {
+          
+           if (inView) {
+               fetchNextPage()
 
+           }
+        if(search) refetch()
+            
+           
+       }, [ inView, search])
+
+   if(isPending || isLoading){
+        return <Loading></Loading>
+       }
+       if(error){
+        return <Loading></Loading>
+       }
+    const pets = data?.pages.flatMap(page => page.pets) || [];
+ 
+      
     return (
         <div className='mt-24'>
-    <Helmet>
+            {
+                isLoading || isPending ? <Loading></Loading>: <div>
+                    
+                    <Helmet>
         <title>Adoptly | All pet</title>
     </Helmet>
             <div>
@@ -72,6 +113,7 @@ const PetListing = () => {
 
             </div>
             <div className="md:flex justify-between items-center mt-9">
+                
                 <div id="spinner" className=" text-center mx-auto hidden">
                     <span className="text-center border-2 loading loading-bars loading-lg"></span>
                 </div>
@@ -106,14 +148,17 @@ const PetListing = () => {
                                 </div>
                             </div>)
                     }
-
+              <div ref={ref} ></div>
 
                 </div>
 
 
 
 
-            </div>
+            </div> 
+                    </div>
+            }
+   
         </div>
     );
 };

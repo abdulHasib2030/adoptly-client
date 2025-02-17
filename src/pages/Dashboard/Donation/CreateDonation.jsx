@@ -41,7 +41,6 @@ const CreateDonation = () => {
 
     const handleAddpetForm = async (e) => {
         e.preventDefault()
-        console.log(formik.values);
         const { file, name, donation, date, shortDescription } = formik.values;
         if (!file) {
             setError({ image: "Pet picture is required" })
@@ -108,7 +107,6 @@ const CreateDonation = () => {
         }
 
     }
-    //  console.log(new Date().);
 
 
     return (

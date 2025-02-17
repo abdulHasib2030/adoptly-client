@@ -15,7 +15,6 @@ const AdoptionRequest = () => {
         queryKey: ['adoptions'],
         queryFn: async () => {
             const res = await axiosSecure.get(`/adoption-request?email=${user.email}`)
-            console.log(res.data);
             return res.data;
         }
     })
@@ -37,7 +36,6 @@ const AdoptionRequest = () => {
                 }
                 axiosSecure.patch(`/update-pet`, updateData)
                     .then(res => {
-                        console.log(res.data);
                         refetch()
                         Swal.fire({
                             title: "Accepted!",
@@ -65,7 +63,6 @@ const AdoptionRequest = () => {
             if (result.isConfirmed) {
                 axiosSecure.delete(`/reject-adoption-request/${id}`)
                     .then(res => {
-                        console.log(res);
                         refetch()
                         Swal.fire({
                             title: "Accepted!",

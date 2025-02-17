@@ -48,7 +48,6 @@ const Addpet = () => {
 
     const handleAddpetForm = async (e) => {
         e.preventDefault()
-        console.log(formik.values);
         const { file, name, age, location, owner } = formik.values;
         if (!file) {
             setError({ image: "Upload pet image" })
@@ -81,7 +80,6 @@ const Addpet = () => {
         else {
             setError({})
         }
-        // console.log(file);
         setLoading(true)
 
         const { data } = await axios.post(image_hosting_api, { image: file },
@@ -116,7 +114,6 @@ const Addpet = () => {
             setLoading(false)
         }
     }
-    //  console.log(new Date().);
 
 
     return (

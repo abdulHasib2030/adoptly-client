@@ -28,7 +28,7 @@ const DonationCampain = () => {
                      <div className='border-2 p-5 rounded-xl'>
                         <div className='text-start'>
 
-                            <img src={donation.image} class="rounded-lg" alt="not available" />
+                            <img src={donation.image} class="rounded-lg h-52 w-full" alt="not available" />
                             <h3 class="text-xl font-bold mt-4 mb-2">{donation.name}</h3>
                             
                             <div class="flex gap-4  items-center">
@@ -37,7 +37,7 @@ const DonationCampain = () => {
                             </div>
                             <div class="flex gap-4  items-center">
                                 
-                                <p>Donated amount: {0} </p>
+                                <p>Donated amount: {donation.collectDonation} </p>
                             </div>
                            
                         </div>

@@ -16,12 +16,11 @@ const PetDetails = () => {
     const axiosPublic = useAxiosPublic()
     const navigate = useNavigate()
     const axiosSecure = useAxiosSecure()
-    const { user } = useAuth()
+    const { user,loading } = useAuth()
     const [openModal, setOpenModal] = useState(false);
     const location = useLocation()
     const [selectedPet, setSelectedPet] = useState(null);
     const path = location.pathname.split('/')[2]
-    console.log(path);
     const { refetch, data: pet, isLoading } = useQuery({
         queryKey: ['pet'],
         queryFn: async () => {
@@ -30,10 +29,16 @@ const PetDetails = () => {
         }
     })
     let description = ""
-    isLoading ? description : description = pet[0].description;
+    isLoading ? description : description = pet[0]?.description;
 
 
     const handleAdoptBtn = (pet) => {
+        if(!user){
+            toast.error('Please login to continue')
+            navigate('/login', {
+                state:location.pathname
+            })
+        }
         setSelectedPet(pet)
         setOpenModal(true)
     }
@@ -41,8 +46,10 @@ const PetDetails = () => {
     const handleAdoptForm = async (e) => {
         e.preventDefault()
         if (!user) {
-            toast.error("Login then adoped pet")
-            navigate('/login')
+            toast.error("Please login to continue")
+            navigate('/login', {
+                state:location.pathname
+            })
         }
         const formData = new FormData(e.target);
         const adoptionData = {
@@ -54,7 +61,6 @@ const PetDetails = () => {
             phoneNumber: formData.get("phone"),
             address: formData.get("address"),
         };
-        console.log(adoptionData);
         const res = await axiosSecure.post('/adopt', adoptionData)
         if (res.data.acknowledged && res.data.insertedId) {
             toast.success("Successfully adopt request.")
@@ -62,33 +68,35 @@ const PetDetails = () => {
         }
 
     }
+    console.log(pet);
 
     return (
 
         <div className='mt-16'>
-            <Helmet>
-                <title>{isLoading? "Adoptly": pet[0].name}</title>
-            </Helmet>
+
             {
-                isLoading ? <Loading></Loading> :
+                isLoading || loading ? <Loading></Loading> :
                     <div>
-                        <div className='h-96 w-full mx-auto border-2'>
-                            <img src={pet[0].image} className='h-full w-full' alt="" />
+                        <Helmet>
+                            <title>{isLoading ? "Adoptly" : pet[0]?.name}</title>
+                        </Helmet>
+                        <div className='lg:h-[500px] h-96 w-full mx-auto border-2'>
+                            <img src={pet[0]?.image} className='h-full w-full' alt="" />
                         </div>
 
                         <div className='mt-5 grid md:grid-cols-12 gap-4'>
                             <div className="w-full  md:col-span-8 space-y-2 p-4 text-start bg-white border border-gray-200 rounded-lg shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700">
-                                <h5 className="mb-2 text-3xl font-bold text-gray-900 dark:text-white">Name of pet <span className='font-semibold'>{pet[0].name}</span></h5>
+                                <h5 className="mb-2 text-3xl font-bold text-gray-900 dark:text-white">Name of pet <span className='font-semibold'>{pet[0]?.name}</span></h5>
                                 <div className='dark:text-white'>
                                     <ul className='list-disc text-start grid grid-cols-2 gap-3'>
-                                        <li>Age: {pet[0].age}</li>
-                                        <li>Category: {pet[0].category}</li>
-                                        <li>Location: {pet[0].location}</li>
-                                        <li>Added date: {moment(pet[0].date).format('MMMM Do YYYY, h:mm:ss a')}</li>
-                                        <li>Adopted: <span className=''>{pet[0].adopted ? "True" : "False"}</span></li>
-                                        <li>User: {pet[0].user}</li>
+                                        <li>Age: {pet[0]?.age}</li>
+                                        <li>Category: {pet[0]?.category}</li>
+                                        <li>Location: {pet[0]?.location}</li>
+                                        <li>Added date: {moment(pet[0]?.date).format('MMMM Do YYYY, h:mm:ss a')}</li>
+                                        <li>Adopted: <span className=''>{pet[0]?.adopted ? "True" : "False"}</span></li>
+                                        <li>User: {pet[0]?.user}</li>
                                     </ul>
-                                    <p className='text-start mt-2 font-bold'>Owner note: <span className='font-normal'>{pet[0].note_owner}</span></p>
+                                    <p className='text-start mt-2 font-bold'>Owner note: <span className='font-normal'>{pet[0]?.note_owner}</span></p>
                                     <p className='font-bold'>Description:</p>
                                     <div dangerouslySetInnerHTML={{ __html: description }} />
                                 </div>

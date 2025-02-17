@@ -27,7 +27,6 @@ function MyAddedPet() {
 
   const navigate = useNavigate()
   const handleUpdate = (value) => {
-    console.log(value);
     navigate(`/dashboard/update-pet/${value._id}`)
   }
 
@@ -44,7 +43,6 @@ function MyAddedPet() {
       if (result.isConfirmed) {
         axiosSecure.delete(`/delete-pet/${value._id}`)
           .then(res => {
-            console.log(res.data);
             refetch()
             Swal.fire({
               title: "Deleted!",
@@ -65,7 +63,6 @@ function MyAddedPet() {
     axiosSecure.patch(`/update-pet`, updateData)
       .then(res => {
         refetch()
-        console.log(res.data);
       })
   }
 

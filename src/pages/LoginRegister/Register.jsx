@@ -67,17 +67,14 @@ const Register = () => {
                 }
             }
         )
-        console.log(data.success, error);
         if (data.success) {
            
-            console.log(email, password);
 
             createUser(email, password)
                 .then(result => {
                     const user = result.user;
                    axiosPublic.post('/add-user', {name: name, email: user.email, photoURL: data.data.display_url, role: 'user'})
                    .then(res => {
-                    console.log(res.data);
                    })
                    
 

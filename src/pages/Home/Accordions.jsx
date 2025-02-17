@@ -4,7 +4,7 @@ import { Accordion } from "flowbite-react";
 
 const Accordions = () => {
     return (
-      <div className=" mx-auto mt-10 p-4">
+      <div className=" mx-auto mt-16 ">
       {/* About Us Section */}
       {/* <div className="bg-white dark:bg-gray-800 dark:text-gray-200 rounded-lg shadow-md p-6 mb-8"> */}
         <h2 className="font-extrabold text-4xl mb-2 dark:text-white">

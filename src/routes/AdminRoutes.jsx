@@ -6,9 +6,9 @@ import Skeleton from 'react-loading-skeleton';
 
 const AdminRoutes = ({children}) => {
     const {user , isAdmin, loading} = useAuth()
-    // if(loading || !isAdmin){
-    //     return   <Skeleton count={3} />
-    // }
+    if(loading || !isAdmin){
+        return   <Skeleton count={3} />
+    }
     if(user && isAdmin){
         return children
     }

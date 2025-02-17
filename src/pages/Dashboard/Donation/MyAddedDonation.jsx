@@ -21,7 +21,6 @@ const MyAddedDonation = () => {
         setOpenModal(true)
         const res = await axiosSecure.get(`/payment-user/${donate._id}`)
         setDonateUser(res.data)
-        console.log(res.data);
     }
 
     const handlePauseBtn = (id, pause) => {

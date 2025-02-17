@@ -43,7 +43,6 @@ const UpdateDonation = () => {
 
     const handleAddpetForm = async (e) => {
         e.preventDefault()
-        console.log(formik.values);
         const { file, name, donation, date, shortDescription } = formik.values;
         if (!file) {
             setError({ image: "Pet picture is required" })
@@ -85,7 +84,6 @@ const UpdateDonation = () => {
             }
         )
         if (data.success) {
-            console.log(donation, name, donation);
             const addData = {
                 id:_id,
                 image: data.data.display_url,
@@ -98,9 +96,7 @@ const UpdateDonation = () => {
        
                 // lst_update: new Date()
             }
-            console.log(addData);
             const res = await axiosSecure.patch('/update-donation', addData) // Send put request
-            console.log(res.data);
             if (res.data.acknowledged || res.data.modifiedCount > 0) {
                 toast.success("Successfully updated Donation Campaign")
                 setLoading(false)
@@ -113,7 +109,6 @@ const UpdateDonation = () => {
         }
 
     }
-    //  console.log(new Date().);
 
 
     return (

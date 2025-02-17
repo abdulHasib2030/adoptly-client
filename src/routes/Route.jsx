@@ -28,6 +28,9 @@ import AdminRoutes from './AdminRoutes';
 import Allpets from '../pages/Dashboard/AdminPage/Allpets';
 import AllDonations from '../pages/Dashboard/AdminPage/AllDonations';
 import Error404 from '../pages/Error/Error404';
+import Contact from '../pages/contact/Contact';
+import About from '../pages/About/About';
+
 
 
 
@@ -37,6 +40,7 @@ export const router = createBrowserRouter([
       element: <HomeLayout></HomeLayout>,
       errorElement:<Error404/>,
       children:[
+        
        {
         path: '/',
         element: <Home></Home>,
@@ -65,6 +69,14 @@ export const router = createBrowserRouter([
        {
         path: '/donation-campain/details/:id',
         element: <DonationDetails />
+       },
+       {
+        path: '/contact',
+        element:<Contact />
+       },
+       {
+        path: '/about',
+        element:<About />
        },
       ]
     },

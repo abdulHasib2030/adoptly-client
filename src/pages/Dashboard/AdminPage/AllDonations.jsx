@@ -53,11 +53,12 @@ const AllDonations = () => {
                 toast.success(`Successfully paused updated`)
             })
     }
+    
     return (
         <div>
 
             {
-                isLoading ? <Skeleton count={5} /> :
+                isLoading ? <Loading /> :
                     <div className="overflow-x-auto">
                         <Helmet>
                             <title>All donations</title>

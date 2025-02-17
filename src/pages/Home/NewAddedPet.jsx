@@ -13,7 +13,7 @@ import { Card } from 'flowbite-react';
 import { Link } from 'react-router-dom';
 
 const NewAddedPet = () => {
-    const plugins = [new Arrow()];
+    const plugins = [new Arrow(), new AutoPlay];
     const axiosPublic = useAxiosPublic()
 
     const { refetch, data: pets = [], isLoading } = useQuery({
@@ -41,7 +41,7 @@ const NewAddedPet = () => {
                         <div class="dark:text-white bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 ">
                             <div>
 
-                                <img src={pet.image} class="rounded-lg w-full h-52" alt="not available" />
+                                <img src={pet.image} class="rounded-lg w-full h-[295px]" alt="not available" />
                                 <h3 class=" ml-3 text-xl text-start font-bold mt-4 mb-2">{pet.name} {pet.age}</h3>
                                 <div class="ml-3 text-start">
                                     <p>Age: {pet.age}</p>

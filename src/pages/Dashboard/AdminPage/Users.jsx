@@ -29,7 +29,6 @@ const Users = () => {
       if (result.isConfirmed) {
         axiosSecure.patch('/user-role-update', {id:id})
         .then(res => {
-          console.log(res.data);
           refetch()
         })
         Swal.fire({

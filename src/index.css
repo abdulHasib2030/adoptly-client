@@ -2,20 +2,21 @@
 @tailwind components;
 @tailwind utilities;
 
+
 .card-panel {
     position: relative;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     justify-content: flex-end;
-    border: 2px solid rgba(0, 0, 0, 0.1);
+    /* border: 2px solid rgba(0, 0, 0, 0.1); */
     border-radius: 0.25rem;
     box-shadow: 0 0.5em 1em -0.125em rgba(10.2, 10.2, 10.2, 0.1);
     /* max-width: 100%; */
     
     margin: 0.5rem;
     width: 50%;
-    height: 400px;
+    height: 500px;
     /* padding: 30px 20px; */
     box-sizing: border-box;
     overflow: hidden;
@@ -38,3 +39,6 @@
     font-size: 1rem;
   }
 
+@media screen {
+  
+}

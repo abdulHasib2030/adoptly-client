@@ -48,7 +48,6 @@ const CheckoutForm = ({ closeModal, recomendedDonation, donation }) => {
             setLoading(false)
         }
         else {
-            console.log("payment success", paymentMethod);
             setError('')
         }
         const { paymentIntent, error: confirmError } = await stripe.confirmCardPayment(client, {
@@ -61,13 +60,10 @@ const CheckoutForm = ({ closeModal, recomendedDonation, donation }) => {
             }
         })
         if (confirmError) {
-            console.log(confirmError);
             setLoading(false)
         }
         else {
-            console.log(paymentIntent, "Payment intent");
             if (paymentIntent.status === 'succeeded') {
-                console.log("abdul Hasib");
                 const payment = {
                     name: user.displayName,
                     email: user.email,
@@ -79,7 +75,6 @@ const CheckoutForm = ({ closeModal, recomendedDonation, donation }) => {
 
                 }
                 const response = await axiosSecure.post('/payment-success', payment)
-                console.log(response);
                 // ref
                 closeModal(false)
                 recomendedDonation(true)

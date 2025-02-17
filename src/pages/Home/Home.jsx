@@ -7,7 +7,7 @@ import NewAddedPet from './NewAddedPet';
 import CountUp from 'react-countup';
 import Accordions from './Accordions';
 import { Helmet } from 'react-helmet-async';
-
+import Count from './Count'
 
 
 const Home = () => {
@@ -20,6 +20,7 @@ const Home = () => {
        <Category ></Category>
        <EncouragePeople></EncouragePeople>
        <AboutUs></AboutUs>
+       <Count ></Count>
        <NewAddedPet/>
     
        <Accordions />
