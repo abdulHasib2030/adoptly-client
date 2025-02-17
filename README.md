@@ -1,11 +1,10 @@
+![Adoptly](https://i.ibb.co.com/hJc3y7kM/Screenshot-2025-02-05-172220.png)
 # Pet Adoption Platform - Adoptly
-
 ## Purpose
 This project is a full-featured Pet Adoption Platform designed to support pet adoption and donation campaigns. It includes features for users to manage their pets and donations, while also empowering admins to manage users, pets, and donation campaigns.
 
----
 
-## Features
+
 
 ### User Features
 1. **Pet Management**:
@@ -33,7 +32,6 @@ This project is a full-featured Pet Adoption Platform designed to support pet ad
    - View all pets added by the user.
    - Manage personal donations and refunds.
 
----
 
 ### Admin Features
 1. **Admin Dashboard**:
@@ -62,7 +60,6 @@ This project is a full-featured Pet Adoption Platform designed to support pet ad
    - Edit or delete campaigns.
    - Pause active donation campaigns.
 
----
 
 ### Additional Features
 - **Stripe Payment Integration**:
@@ -75,11 +72,9 @@ This project is a full-featured Pet Adoption Platform designed to support pet ad
   - Users can request refunds for donations via their dashboard.
 
 
----
 
 
-
-## Technologies Used
+## 🛠️ Tech Stack
 - **Frontend**: React.js
 - **Backend**: Node.js, Express.js
 - **Database**: MongoDB
@@ -139,3 +134,63 @@ npm i stripe
 ## 🔗 Live Links
 - https://adoptly-908e3.web.app/
 - https://adoptly-908e3.firebaseapp.com/
+
+## 📦 Dependencies Used
+
+- Express: Web framework for the backend.
+- React:  JavaScript library for building the frontend.
+- TailwindCSS: Utility-first CSS framework for styling.
+- MongoDB: Database for storing data.
+
+You can install the dependencies with:
+
+Backend:
+```bash
+npm install 
+```
+Frontend:
+```bash
+npm install 
+```
+
+## 🚀 Run the Project Locally
+
+Follow these steps to get your project up and running on your local machine:
+
+### Prerequisites
+
+Make sure you have the following installed:
+- [Node.js](https://nodejs.org/) (for React frontend & Backend)
+- [Git](https://git-scm.com/)
+
+
+### 1. Clone the Repository
+
+Start by cloning the repository to your local machine using the following command:
+
+```bash
+git clone https://github.com/abdulHasib2030/adoptly-client.git
+git clone https://github.com/abdulHasib2030/adoptly-server.git
+```
+
+### 2. Install the required dependencies start the Backend Server
+
+```bash
+npm install
+nondemon index.js
+```
+
+### 3. Install the required dependencies start the Frontend Server
+
+```bash
+npm install
+npm run dev
+```
+
+
+
+
+
+
+
+
