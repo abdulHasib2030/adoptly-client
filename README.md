@@ -4,7 +4,7 @@
 This project is a full-featured Pet Adoption Platform designed to support pet adoption and donation campaigns. It includes features for users to manage their pets and donations, while also empowering admins to manage users, pets, and donation campaigns.
 
 
-
+## 🚀 Features
 
 ### User Features
 1. **Pet Management**:
