@@ -30,6 +30,7 @@ import AllDonations from '../pages/Dashboard/AdminPage/AllDonations';
 import Error404 from '../pages/Error/Error404';
 import Contact from '../pages/contact/Contact';
 import About from '../pages/About/About';
+import Profile from '../pages/Dashboard/Profile/Profile';
 
 
 
@@ -122,6 +123,10 @@ export const router = createBrowserRouter([
         {
           path: 'adoption-request',
           element: <AdoptionRequest />
+        },
+        {
+          path: 'profile',
+          element: <Profile />
         },
         // admin routes
         {

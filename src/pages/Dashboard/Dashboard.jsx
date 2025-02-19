@@ -1,16 +1,12 @@
 import React, { useState } from 'react';
 import Navbar from '../../components/NavFooter/Navbar';
 import { Link, Outlet, useLocation } from 'react-router-dom';
-import logo from '../../assets/logo.png'
-import { RiMenu4Fill } from "react-icons/ri";
-import { IoAdd, IoExpandOutline } from 'react-icons/io5';
-import { IoMdMenu, IoMdWatch } from 'react-icons/io';
-import Addpet from './Addpet/Addpet';
+import { IoSettingsSharp } from "react-icons/io5";
 import { FaPlus, FaList, FaPaw, FaDonate, FaRegEye, FaHeart,  FaHandHoldingUsd, FaUsers, FaHome, FaArrowAltCircleLeft } from 'react-icons/fa';
 import { IoIosArrowForward } from "react-icons/io";
 
 import useAuth from '../../hooks/useAuth';
-import { CgUserAdd } from 'react-icons/cg';
+
 
 const Dashboard = () => {
    const [sidebar, setSidebar] = useState(true)
@@ -88,6 +84,12 @@ const Dashboard = () => {
          <Link to={'my-donation'} onClick={()=> setSidebarActive('my-donation')} class={`flex ${sidebarActive === 'my-donation' && 'dark:bg-gray-600 bg-gray-200'} items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group`}>
             <FaHeart />
             <span class="ms-3">My Donations</span>
+         </Link>
+      </li>
+      <li>
+         <Link to={'profile'} onClick={()=> setSidebarActive('profile')} class={`flex ${sidebarActive === 'profile' && 'dark:bg-gray-600 bg-gray-200'} items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group`}>
+            <IoSettingsSharp />
+            <span class="ms-3">Profile settings</span>
          </Link>
       </li>
 
