@@ -13,7 +13,8 @@ const axiosPublic = useAxiosPublic()
   const { data: stars = [], isLoading } = useQuery({
     queryKey: ['count'],
     queryFn: async () => {
-      const res = await axiosPublic.get('/count')
+      // const res = await axiosPublic.get('/count')
+      const res = await axios.get('http://localhost:5000/count')
       return res.data;
     }
   })
@@ -26,10 +27,10 @@ const axiosPublic = useAxiosPublic()
           isLoading ? <Loading></Loading> :
             <div className='grid grid-cols-1 w-full md:grid-cols-3 gap-6'>
               {
-              stars.map(star =>
+              stars.slice(0, 3).map(star =>
 
                 <Card className="">
-        <CountUp end={star.value} duration={5}  className='font-bold text-3xl' enableScrollSpy={true} />
+        <CountUp end={star.value} duration={3}  className='font-bold text-3xl' enableScrollSpy={true} />
 
                   <h5 className="text-5xl font-bold tracking-tight text-gray-900 dark:text-white">
                    {star.icon}
