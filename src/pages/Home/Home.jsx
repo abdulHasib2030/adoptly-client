@@ -8,6 +8,7 @@ import CountUp from 'react-countup';
 import Accordions from './Accordions';
 import { Helmet } from 'react-helmet-async';
 import Count from './Count'
+import Article from './Article';
 
 
 const Home = () => {
@@ -22,7 +23,7 @@ const Home = () => {
        <AboutUs></AboutUs>
        <Count ></Count>
        <NewAddedPet/>
-    
+        <Article />
        <Accordions />
         </div>
     );

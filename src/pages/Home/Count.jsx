@@ -14,7 +14,7 @@ const axiosPublic = useAxiosPublic()
     queryKey: ['count'],
     queryFn: async () => {
       // const res = await axiosPublic.get('/count')
-      const res = await axios.get('http://localhost:5000/count')
+      const res = await axios.get('https://adoptly-nine.vercel.app/count')
       return res.data;
     }
   })

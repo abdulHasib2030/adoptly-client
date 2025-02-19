@@ -28,8 +28,8 @@ const DashBoardLayout = () => {
     queryKey: ['count', 'category-product'],
     queryFn: async () => {
       const [res1, res2] = await Promise.all([
-        axios.get('http://localhost:5000/count/'),
-        axios.get('http://localhost:5000/category-product/')
+        axios.get('https://adoptly-nine.vercel.app/count/'),
+        axios.get('https://adoptly-nine.vercel.app/category-product/')
       ])
       return [res1.data, res2.data]
     }
