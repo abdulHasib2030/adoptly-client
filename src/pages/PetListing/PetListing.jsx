@@ -6,11 +6,15 @@ import Select from 'react-select';
 import { Helmet } from 'react-helmet-async';
 import { useInView } from 'react-intersection-observer';
 import Loading from '../../components/Utlies/Loading';
+import {  FaSortDown, FaSortUp } from "react-icons/fa";
+
 
 const PetListing = () => {
     const [dropdown, setDropdown] = useState(true)
     const [selectedOption, setSelectedOption] = useState({ value: "all", label: "All Categories" });
     const [search, setSearch] = useState('')
+    const [order, setOrder] = useState(false)
+    const [petData, setPetData] = useState(null)
     const dropdowBtn = () => {
         dropdown ? setDropdown(false) : setDropdown(true)
     }
@@ -73,8 +77,25 @@ const PetListing = () => {
        if(error){
         return <Loading></Loading>
        }
-    const pets = data?.pages.flatMap(page => page.pets) || [];
+
+
+
+    let pets = data?.pages.flatMap(page => page.pets) || [];
+    
+
+    
  
+       const handleAscenDescenOrder = () =>{
+        order ? setOrder(false) : setOrder(true)
+        if(order){
+            let temp = pets.sort((a, b) => a.price - b.price)
+            setPetData(temp)
+        }
+        else{
+           let temp =  pets.sort((a, b) => b.price - a.price)
+            setPetData(temp)
+        }
+       }
       
     return (
         <div className='mt-24'>
@@ -85,8 +106,8 @@ const PetListing = () => {
         <title>Adoptly | All pet</title>
     </Helmet>
             <div>
-
-                <div class="max-w-lg mt-4 ">
+                <div className='md:flex items-center justify-between lg:mt-28 md:mt-32 mt-28'>
+                <div class="max-w-lg  ">
                     <div class="flex relative">
 
                         <div className='w-1/2'>
@@ -111,23 +132,34 @@ const PetListing = () => {
                     </div>
                 </div>
 
+                {/* sort ascending and decending */}
+                <div  className='text-black dark:text-white border p-2 rounded-xl cursor-pointer inline-block mt-3 md:mt-0 mr-5' onClick={handleAscenDescenOrder}>
+                    {
+                        order ? 
+                        <p className='flex items-center '>Sort by ascending price <FaSortUp className='mt-2' /></p>:
+                <p className='flex items-center '>Sort by descending price <FaSortDown /></p>
+                    }
+                </div>
+                </div>
+
             </div>
-            <div className="md:flex justify-between items-center mt-9">
+            <div className="md:flex justify-between   items-center mt-9">
                 
                 <div id="spinner" className=" text-center mx-auto hidden">
                     <span className="text-center border-2 loading loading-bars loading-lg"></span>
                 </div>
-                <div id="item-show" className='grid md:grid-cols-2 grid-cols-1 lg:grid-cols-3 gap-8'>
+                <div id="item-show" className='grid md:grid-cols-2 grid-cols-1 lg:grid-cols-4 gap-8'>
                     {
-                        pets.map(pet =>
+                        petData ?  
+                        petData.map(pet =>
                             <div className='border-2 p-5 rounded-xl'>
                                 <div className='text-start'>
 
-                                    <img src={pet.image} class="rounded-lg w-72 h-52" alt="not available" />
+                                    <img src={pet.image} class="rounded-xl w-full h-52" alt="not available" />
                                     <h3 class="text-xl font-bold mt-4 mb-2 dark:text-white">{pet.name}</h3>
-                                    <div class="flex gap-4 dark:text-white items-center">
+                                    <div class="flex gap-4 justify-between dark:text-white items-center">
 
-                                        <p>Age: {pet.age}</p>
+                                        <p>Age: {pet.age}</p> <p>Price: {pet.price}</p>
                                     </div>
                                     <div class="flex gap-4 dark:text-white items-center">
 
@@ -146,7 +178,35 @@ const PetListing = () => {
                                         <button class="py-2 px-4 border-2 rounded-lg font-bold text-[#0E7A81] hover:bg-[#0E7A81] hover:text-white" >Details</button>
                                     </Link>
                                 </div>
-                            </div>)
+                            </div>) :
+                            pets.map(pet =>
+                                <div className='border-2 p-5 rounded-xl'>
+                                    <div className='text-start'>
+    
+                                        <img src={pet.image} class="rounded-xl w-full h-52" alt="not available" />
+                                        <h3 class="text-xl font-bold mt-4 mb-2 dark:text-white">{pet.name}</h3>
+                                        <div class="flex gap-4 justify-between dark:text-white items-center">
+    
+                                            <p>Age: {pet.age}</p> <p>Price: {pet.price}</p>
+                                        </div>
+                                        <div class="flex gap-4 dark:text-white items-center">
+    
+                                            <p>Location: {pet.location}</p>
+                                        </div>
+    
+                                    </div>
+                                    <hr />
+                                    <div class="flex gap-4 mt-4">
+                                        {/* <div class="py-2 px-2 border-2 rounded-lg hover:border-[#0E7A81]" >
+                                    <img src="./images/favorite.png" alt="" class=" w-5 h-5" />
+                                </div> */}
+    
+                                        {/* <button class="py-2 px-4 border-2 rounded-lg font-bold text-[#0E7A81] hover:bg-[#0E7A81] hover:text-white " id='adopt-${element.petId}'  >Adopt</button> */}
+                                        <Link to={`/pet-details/${pet._id}`}>
+                                            <button class="py-2 px-4 border-2 rounded-lg font-bold text-[#0E7A81] hover:bg-[#0E7A81] hover:text-white" >Details</button>
+                                        </Link>
+                                    </div>
+                                </div>) 
                     }
               <div ref={ref} ></div>
 

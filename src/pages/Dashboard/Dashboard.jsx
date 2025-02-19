@@ -99,15 +99,15 @@ const Dashboard = () => {
          <Navbar></Navbar>
 
 
-         <div className='mt-16'>
+         <div className='mt-20'>
 
-            <div className='dark:text-white md:hidden'>
-               <svg onClick={handleSidebar} class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+            <div className='dark:text-white lg:hidden pt-2'>
+               <svg onClick={handleSidebar} class="w-6 h-6 " aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                   <path clip-rule="evenodd" fill-rule="evenodd" d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z"></path>
                </svg>
             </div>
 
-            <aside id="cta-button-sidebar" class="fixed top-[85px] left-0 z-40 w-72 h-screen transition-transform -translate-x-full md:translate-x-0" aria-label="Sidebar">
+            <aside id="cta-button-sidebar" class="fixed top-[85px] left-0 z-40 w-72 h-screen transition-transform -translate-x-full lg:translate-x-0" aria-label="Sidebar">
                <div class="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
                   {
                      ulItem}
@@ -126,9 +126,9 @@ const Dashboard = () => {
 
 
 
-            <div onClick={()=> !sidebar && setSidebar(true)} class="p-4 md:ml-64">
+            <div onClick={()=> !sidebar && setSidebar(true)} class="p-4 lg:ml-72">
 
-               <div class="p-4 border-2 border-gray-200 min-h-screen rounded-lg dark:border-gray-700">
+               <div class="p-4 m-5 border-2 border-gray-200 min-h-screen rounded-lg dark:border-gray-700">
                  <Outlet />
                </div>
             </div>

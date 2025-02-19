@@ -9,7 +9,7 @@ import stripe from '../../assets/stripe.png';
 import imgbb from '../../assets/imgbb.png';
 const About = () => {
     return (
-        <div className='mt-20 mb-44 container mx-auto dark:text-white'>
+        <div className='mt-28 mb-44 container mx-auto dark:text-white'>
             <div className='md:flex gap-6'>
                 <img src={img} className='w-full ' alt="" />
                 <div className=' items-center text-justify flex flex-col justify-center'>
@@ -165,7 +165,7 @@ const About = () => {
             </div>
 
 
-            <div className="space-y-2"><span className=" font-bold text-4xl ">Cutting-Edge Technologies Behind <span className='text-[#125876]'>Solutions</span>  </span>
+            <div className="space-y-2 text-center "><span className="font-bold text-4xl ">Cutting-Edge Technologies Behind <span className='text-[#125876]'>Solutions</span>  </span>
                 {/* {
               Object.entries(data.tech_stack).map(([key, value], index) => <div>
                 <span className="text-lg font-bold">{index + 1}. {key} </span>

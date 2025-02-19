@@ -7,7 +7,7 @@ const DashBoardLayout = () => {
     const {user, isAdmin, loading} = useAuth()
     
     return (
-        <div className='dark:text-white'>
+        <div className=''>
             <Helmet>
                     <title>Adoptly | Dashboard</title>
                 </Helmet>

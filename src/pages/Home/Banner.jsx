@@ -8,7 +8,7 @@ const Banner = () => {
         <section>
             <div className="text-center  mx-auto dark:text-white md:flex justify-between  gap-9">
               <div className='md:w-2/3'>
-              <h5 className="text-xl  font-bold mt-7"> Bringing Families Together ❤️‍🔥 </h5>
+              <h5 className="text-xl  font-bold mt-16 lg:mt-7"> Bringing Families Together ❤️‍🔥 </h5>
                 <h1 className="md:text-7xl text-4xl font-extrabold mt-7"> Your Path to Adoption Starts Here</h1>
                 <p className="mt-7">Embark on a journey to find your perfect companion with our easy and supportive adoption
                     platform. Browse, connect, and adopt from a variety of pets waiting for a loving home. Your path to

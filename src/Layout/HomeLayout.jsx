@@ -9,11 +9,11 @@ import Loading from '../components/Utlies/Loading';
 
 const HomeLayout = () => {
     const {loading} = useAuth()
-    // if(loading) return <Loading></Loading>
+    if(loading) return <Loading></Loading>
     return (
         <div>
             <Navbar></Navbar>
-            <div className='my-10'>
+            <div className='my-10 container mx-auto'>
             <Toaster />
             <Outlet></Outlet>
 
